@@ -1,9 +1,9 @@
 # README
 
 Team:
-* Cristobal Lara B.
-* Jose Lira E.
 
+* Cristobal Lara
+* Jose Lira
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
