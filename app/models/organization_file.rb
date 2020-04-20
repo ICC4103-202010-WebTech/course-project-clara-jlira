@@ -1,0 +1,2 @@
+class OrganizationFile < ApplicationRecord
+end
