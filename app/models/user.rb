@@ -7,15 +7,15 @@ class EmailValidator < ActiveModel::EachValidator
 end
 
 class User < ApplicationRecord
-  has_many :memberships
-  has_many :invitations
-  has_many :events
-  has_many :replies
-  has_many :comments
-  has_many :notifications
-  has_many :reports
-  has_many :messages
-  has_many :votes
+  has_many :memberships, dependent: :destroy
+  has_many :invitations, dependent: :destroy
+  has_many :events, dependent: :destroy
+  has_many :replies, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+  has_many :reports, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :votes, dependent: :destroy
 
   validates :user_name, :first_name, :last_name, :address, :password, presence: true
   validates :user_name, uniqueness: true
