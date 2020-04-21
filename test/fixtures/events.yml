@@ -5,9 +5,11 @@ one:
   description: MyString
   location: MyString
   private: false
+  organization_event: false
 
 two:
   title: MyString
   description: MyString
   location: MyString
   private: false
+  organization_event: false

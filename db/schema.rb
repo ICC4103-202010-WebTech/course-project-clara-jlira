@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_20_232060) do
+ActiveRecord::Schema.define(version: 2020_04_21_031039) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "User_id"
-    t.integer "Event_id"
-    t.index ["Event_id"], name: "index_comments_on_Event_id"
-    t.index ["User_id"], name: "index_comments_on_User_id"
+    t.integer "user_id"
+    t.integer "event_id"
+    t.index ["event_id"], name: "index_comments_on_event_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "event_files", force: :cascade do |t|
@@ -27,16 +27,16 @@ ActiveRecord::Schema.define(version: 2020_04_20_232060) do
     t.string "file_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "Event_id"
-    t.index ["Event_id"], name: "index_event_files_on_Event_id"
+    t.integer "event_id"
+    t.index ["event_id"], name: "index_event_files_on_event_id"
   end
 
   create_table "eventdates", force: :cascade do |t|
     t.datetime "event_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "Event_id"
-    t.index ["Event_id"], name: "index_eventdates_on_Event_id"
+    t.integer "event_id"
+    t.index ["event_id"], name: "index_eventdates_on_event_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -44,40 +44,39 @@ ActiveRecord::Schema.define(version: 2020_04_20_232060) do
     t.string "description"
     t.string "location"
     t.boolean "private"
+    t.boolean "organization_event"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "User_id"
-    t.integer "Organization_id"
-    t.index ["Organization_id"], name: "index_events_on_Organization_id"
-    t.index ["User_id"], name: "index_events_on_User_id"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "invitations", force: :cascade do |t|
     t.boolean "acceptance"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "User_id"
-    t.integer "Event_id"
-    t.index ["Event_id"], name: "index_invitations_on_Event_id"
-    t.index ["User_id"], name: "index_invitations_on_User_id"
+    t.integer "user_id"
+    t.integer "event_id"
+    t.index ["event_id"], name: "index_invitations_on_event_id"
+    t.index ["user_id"], name: "index_invitations_on_user_id"
   end
 
   create_table "memberships", force: :cascade do |t|
     t.string "role"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "User_id"
-    t.integer "Organization_id"
-    t.index ["Organization_id"], name: "index_memberships_on_Organization_id"
-    t.index ["User_id"], name: "index_memberships_on_User_id"
+    t.integer "user_id"
+    t.integer "organization_id"
+    t.index ["organization_id"], name: "index_memberships_on_organization_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
     t.string "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "User_id"
-    t.index ["User_id"], name: "index_messages_on_User_id"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -85,8 +84,8 @@ ActiveRecord::Schema.define(version: 2020_04_20_232060) do
     t.string "notification_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "User_id"
-    t.index ["User_id"], name: "index_notifications_on_User_id"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "organization_files", force: :cascade do |t|
@@ -94,8 +93,8 @@ ActiveRecord::Schema.define(version: 2020_04_20_232060) do
     t.string "file_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "Organization_id"
-    t.index ["Organization_id"], name: "index_organization_files_on_Organization_id"
+    t.integer "organization_id"
+    t.index ["organization_id"], name: "index_organization_files_on_organization_id"
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -112,20 +111,20 @@ ActiveRecord::Schema.define(version: 2020_04_20_232060) do
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "User_id"
-    t.integer "Comment_id"
-    t.index ["Comment_id"], name: "index_replies_on_Comment_id"
-    t.index ["User_id"], name: "index_replies_on_User_id"
+    t.integer "user_id"
+    t.integer "comment_id"
+    t.index ["comment_id"], name: "index_replies_on_comment_id"
+    t.index ["user_id"], name: "index_replies_on_user_id"
   end
 
   create_table "reports", force: :cascade do |t|
     t.string "reason"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "User_id"
-    t.integer "Event_id"
-    t.index ["Event_id"], name: "index_reports_on_Event_id"
-    t.index ["User_id"], name: "index_reports_on_User_id"
+    t.integer "user_id"
+    t.integer "event_id"
+    t.index ["event_id"], name: "index_reports_on_event_id"
+    t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -144,19 +143,18 @@ ActiveRecord::Schema.define(version: 2020_04_20_232060) do
   create_table "votes", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "User_id"
-    t.integer "Invitation_id"
-    t.integer "Eventdate_id"
-    t.index ["Eventdate_id"], name: "index_votes_on_Eventdate_id"
-    t.index ["Invitation_id"], name: "index_votes_on_Invitation_id"
-    t.index ["User_id"], name: "index_votes_on_User_id"
+    t.integer "user_id"
+    t.integer "invitation_id"
+    t.integer "eventdate_id"
+    t.index ["eventdate_id"], name: "index_votes_on_eventdate_id"
+    t.index ["invitation_id"], name: "index_votes_on_invitation_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
   add_foreign_key "comments", "Events"
   add_foreign_key "comments", "Users"
   add_foreign_key "event_files", "Events"
   add_foreign_key "eventdates", "Events"
-  add_foreign_key "events", "Organizations"
   add_foreign_key "events", "Users"
   add_foreign_key "invitations", "Events"
   add_foreign_key "invitations", "Users"

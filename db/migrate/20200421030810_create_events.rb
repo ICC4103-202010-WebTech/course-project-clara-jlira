@@ -5,6 +5,7 @@ class CreateEvents < ActiveRecord::Migration[6.0]
       t.string :description
       t.string :location
       t.boolean :private
+      t.boolean :organization_event
 
       t.timestamps
     end

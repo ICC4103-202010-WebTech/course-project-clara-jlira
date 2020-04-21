@@ -1,4 +1,4 @@
-class AddEventdateIdToVote < ActiveRecord::Migration[6.0]
+class AddEventdateToVote < ActiveRecord::Migration[6.0]
   def change
     add_reference :votes, :Eventdate, null: true, foreign_key: true
   end
