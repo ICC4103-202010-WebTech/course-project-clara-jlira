@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2020_04_20_232060) do
 
   create_table "event_files", force: :cascade do |t|
     t.string "file_dir"
-    t.string "type"
+    t.string "file_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "Event_id"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2020_04_20_232060) do
 
   create_table "notifications", force: :cascade do |t|
     t.string "notification"
-    t.string "type"
+    t.string "notification_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "User_id"
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 2020_04_20_232060) do
 
   create_table "organization_files", force: :cascade do |t|
     t.string "file_dir"
-    t.string "type"
+    t.string "file_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "Organization_id"
