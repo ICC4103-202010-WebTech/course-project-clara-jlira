@@ -1,5 +1,5 @@
 class AddEventIdToEventFiles < ActiveRecord::Migration[6.0]
   def change
-    add_column :event_files, :event_id, :integer
+    add_column :event_files, :event_id, :integer, foreign_key: true
   end
 end
