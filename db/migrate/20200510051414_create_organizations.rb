@@ -3,7 +3,6 @@ class CreateOrganizations < ActiveRecord::Migration[6.0]
     create_table :organizations do |t|
       t.string :name
       t.string :description
-      t.datetime :start_date
       t.string :contact
       t.string :location
 

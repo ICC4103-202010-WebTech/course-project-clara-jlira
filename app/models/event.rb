@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :user
-  has_many :eventdates, dependent: :destroy
+  has_many :event_dates, dependent: :destroy
   has_many :invitations, dependent: :destroy
   has_many :event_files, dependent: :destroy
   has_many :comments, dependent: :destroy
