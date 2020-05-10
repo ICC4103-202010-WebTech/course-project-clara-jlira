@@ -1,1 +1,0 @@
-json.partial! "api_v1_organization_files/api_v1_organization_file", api_v1_organization_file: @api_v1_organization_file
