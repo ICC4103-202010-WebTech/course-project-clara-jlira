@@ -1,0 +1,7 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_option: 2020-05-10 01:14:25
+
+two:
+  event_option: 2020-05-10 01:14:25

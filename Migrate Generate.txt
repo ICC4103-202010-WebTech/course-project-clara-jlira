@@ -1,0 +1,41 @@
+rails g model User user_name:string first_name:string last_name:string address:string password:string email:string phone:numeric admin:boolean
+rails g model Organization name:string description:string contact:string location:string
+rails g model OrganizationFile file_dir:string file_type:string
+rails g model Membership role:string
+rails g model Event title:string description:string location:string private:boolean organization_event:boolean
+rails g model Invitation acceptance:boolean
+rails g model Vote 
+rails g model EventFile file_dir:string file_type:string
+rails g model Comment content:string
+rails g model Reply content:string
+rails g model Notification notification:string notification_type:string
+rails g model Message message:string
+rails g model Report reason:string
+rails g model EventDate event_option:datetime
+
+RAILS_ENV=development rake db:migrate
+
+rails g migration Add(1)To(2) (1):references
+
+rails g migration add_user_id_to_memberships user_id:integer
+rails g migration add_user_id_to_votes user_id:integer
+rails g migration add_user_id_to_invitations user_id:integer
+rails g migration add_user_id_to_events user_id:integer
+rails g migration add_user_id_to_reports user_id:integer
+rails g migration add_user_id_to_comments user_id:integer
+rails g migration add_user_id_to_replies user_id:integer
+rails g migration add_user_id_to_messages user_id:integer
+rails g migration add_user_id_to_notifications user_id:integer
+rails g migration add_organization_id_to_memberships organization_id:integer
+rails g migration add_organization_id_to_organization_files organization_id:integer
+rails g migration add_event_id_to_invitations event_id:integer
+rails g migration add_event_id_to_event_dates event_id:integer
+rails g migration add_event_id_to_event_files event_id:integer
+rails g migration add_event_id_to_comments event_id:integer
+rails g migration add_event_id_to_reports event_id:integer
+rails g migration add_invitation_id_to_votes invitation_id:integer
+rails g migration add_comment_id_to_replies comment_id:integer
+rails g migration add_event_date_id_to_votes event_date_id:integer
+RAILS_ENV=development rake db:migrate
+
+
