@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
-
+<h1>Event Date</h1>
 <p>
-  <strong>Index:</strong>
-  <%= @event_date.index %>
+  <strong>Event Id:</strong>
+  <%= @event_date.event_id %>
 </p>
 
 <p>
-  <strong>Show:</strong>
-  <%= @event_date.show %>
+  <strong>Event Option:</strong>
+  <%= @event_date.event_option %>
 </p>
 
-<%= link_to 'Edit', edit_event_date_path(@event_date) %> |
-<%= link_to 'Back', event_dates_path %>
+<%= link_to 'Back', :back %>
+<%= link_to 'Votes', user_votes_path(@event_date.id) %>

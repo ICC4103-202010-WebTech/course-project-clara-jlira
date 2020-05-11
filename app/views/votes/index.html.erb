@@ -5,8 +5,9 @@
 <table>
   <thead>
     <tr>
-      <th>Index</th>
-      <th>Show</th>
+      <th>User Id</th>
+      <th>Invitation Id</th>
+      <th>Event date Id</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,16 +15,12 @@
   <tbody>
     <% @votes.each do |vote| %>
       <tr>
-        <td><%= vote.index %></td>
-        <td><%= vote.show %></td>
-        <td><%= link_to 'Show', vote %></td>
-        <td><%= link_to 'Edit', edit_vote_path(vote) %></td>
-        <td><%= link_to 'Destroy', vote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= vote.user_id %></td>
+        <td><%= vote.invitation_id %></td>
+        <td><%= vote.event_date_id %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<%= link_to 'Back', :back %>
 <br>
-
-<%= link_to 'New Vote', new_vote_path %>

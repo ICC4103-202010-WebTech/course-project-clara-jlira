@@ -1,14 +1,17 @@
 <p id="notice"><%= notice %></p>
-
+<h1>Comment</h1>
 <p>
-  <strong>Index:</strong>
-  <%= @comment.index %>
+  <strong>user_id:</strong>
+  <%= @comment.user_id %>
+</p>
+<p>
+  <strong>event_id:</strong>
+  <%= @comment.event_id %>
+</p>
+<p>
+  <strong>content:</strong>
+  <%= @comment.content %>
 </p>
 
-<p>
-  <strong>Show:</strong>
-  <%= @comment.show %>
-</p>
-
-<%= link_to 'Edit', edit_comment_path(@comment) %> |
-<%= link_to 'Back', comments_path %>
+<%= link_to 'Back', :back %>
+<%= link_to 'Replies', comment_replies_path(@comment.id) %>

@@ -1,14 +1,43 @@
 <p id="notice"><%= notice %></p>
-
+<h1>User</h1>
 <p>
-  <strong>Index:</strong>
+  <strong>User Name:</strong>
   <%= @user.user_name %>
 </p>
 
 <p>
-  <strong>Show:</strong>
+  <strong>Email:</strong>
   <%= @user.email %>
 </p>
 
+<p>
+  <strong>First_Name:</strong>
+  <%= @user.first_name %>
+</p>
+
+<p>
+  <strong>Last Name:</strong>
+  <%= @user.last_name %>
+</p>
+
+<p>
+  <strong>Address</strong>
+  <%= @user.address %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @user.phone %>
+</p>
 <%= link_to 'Back', users_path %>
-<%= link_to 'Events', user_events_path %>
+<%= link_to 'Events', user_events_path(@user.id) %>
+<%= link_to 'Invitations', user_invitations_path(@user.id) %>
+<%= link_to 'Comments', user_comments_path(@user.id) %>
+<%= link_to 'Messages', user_messages_path(@user.id) %>
+<%= link_to 'Notifications', user_notifications_path(@user.id) %>
+<%= link_to 'Memberships', user_memberships_path(@user.id) %>
+<%= link_to 'Replies', user_replies_path(@user.id) %>
+<%= link_to 'Reports', user_reports_path(@user.id) %>
+<%= link_to 'Votes', user_votes_path(@user.id) %>
+
+

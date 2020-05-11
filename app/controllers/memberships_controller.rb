@@ -1,10 +1,14 @@
 class MembershipsController < ApplicationController
   before_action :set_membership, only: [:show, :edit, :update, :destroy]
-  before_action :set_organization_id, only: [:index]
 
   # GET /memberships
   # GET /memberships.json
   def index
+    if params[:event_id]
+      set_organization_id
+    elsif params[:user_id]
+      set_user_id
+    end
   end
 
   # GET /memberships/1
@@ -69,6 +73,10 @@ class MembershipsController < ApplicationController
 
     def set_organization_id
       @memberships = Membership.where('organization_id = ?',params[:organization_id])
+    end
+
+    def set_user_id
+      @memberships = Membership.where('user_id = ?',params[:user_id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -1,10 +1,13 @@
 class RepliesController < ApplicationController
   before_action :set_reply, only: [:show, :edit, :update, :destroy]
-
   # GET /replies
   # GET /replies.json
   def index
-    @replies = Reply.all
+    if params[:comment_id]
+      set_comment_id
+    elsif params[:user_id]
+      set_user_id
+    end
   end
 
   # GET /replies/1
@@ -65,6 +68,14 @@ class RepliesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_reply
       @reply = Reply.find(params[:id])
+    end
+
+    def set_user_id
+      @replies = Reply.where('user_id = ?',params[:user_id])
+    end
+
+    def set_comment_id
+      @replies = Reply.where('comment_id = ?',params[:comment_id])
     end
 
     # Only allow a list of trusted parameters through.

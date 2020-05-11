@@ -1,10 +1,13 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
-
   # GET /reports
   # GET /reports.json
   def index
-    @reports = Report.all
+    if params[:event_id]
+      set_event_id
+    elsif params[:user_id]
+      set_user_id
+    end
   end
 
   # GET /reports/1
@@ -62,13 +65,22 @@ class ReportsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_report
-      @report = Report.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_report
+    @report = Report.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def report_params
-      params.require(:report).permit(:index, :show)
-    end
+  def set_user_id
+    @reports = Report.where('user_id = ?',params[:user_id])
+  end
+
+  def set_event_id
+    @reports = Report.where('event_id = ?',params[:event_id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def report_params
+    params.require(:report).permit(:index, :show)
+  end
+
 end

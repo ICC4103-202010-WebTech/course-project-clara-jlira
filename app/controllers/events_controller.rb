@@ -4,7 +4,11 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    if params[:user_id]
+      set_user_id
+    else
+      @events = Event.all
+    end
   end
 
   # GET /events/1
@@ -68,6 +72,9 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
     end
 
+    def set_user_id
+      @events = Event.where('user_id = ?',params[:user_id])
+    end
     # Only allow a list of trusted parameters through.
     def event_params
       params.require(:event).permit(:index, :show)

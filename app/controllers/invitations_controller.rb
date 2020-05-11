@@ -1,10 +1,15 @@
 class InvitationsController < ApplicationController
   before_action :set_invitation, only: [:show, :edit, :update, :destroy]
-  before_action :set_event_id, only: [:index]
+
 
   # GET /invitations
   # GET /invitations.json
   def index
+    if params[:event_id]
+      set_event_id
+    elsif params[:user_id]
+      set_user_id
+    end
   end
 
   # GET /invitations/1
@@ -66,9 +71,15 @@ class InvitationsController < ApplicationController
     def set_invitation
       @invitation = Invitation.find(params[:id])
     end
+
     def set_event_id
       @invitations = Invitation.where('event_id = ?',params[:event_id])
     end
+
+  def set_user_id
+    @invitations = Invitation.where('user_id = ?',params[:user_id])
+  end
+
     # Only allow a list of trusted parameters through.
     def invitation_params
       params.require(:invitation).permit(:index, :show)

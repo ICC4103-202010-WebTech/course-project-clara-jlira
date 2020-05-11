@@ -1,10 +1,13 @@
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :edit, :update, :destroy]
-
   # GET /votes
   # GET /votes.json
   def index
-    @votes = Vote.all
+    if params[:event_date_id]
+      set_event_date_id
+    elsif params[:user_id]
+      set_user_id
+    end
   end
 
   # GET /votes/1
@@ -65,6 +68,14 @@ class VotesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_vote
       @vote = Vote.find(params[:id])
+    end
+
+    def set_user_id
+      @votes = Vote.where('user_id = ?',params[:user_id])
+    end
+
+    def set_event_date_id
+      @votes = Vote.where('user_id = ?',params[:event_date_id])
     end
 
     # Only allow a list of trusted parameters through.

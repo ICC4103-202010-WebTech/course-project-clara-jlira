@@ -5,8 +5,9 @@
 <table>
   <thead>
     <tr>
-      <th>Index</th>
-      <th>Show</th>
+      <th>User Id</th>
+      <th>Comment Id</th>
+      <th>Content</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,16 +15,13 @@
   <tbody>
     <% @replies.each do |reply| %>
       <tr>
-        <td><%= reply.index %></td>
-        <td><%= reply.show %></td>
-        <td><%= link_to 'Show', reply %></td>
-        <td><%= link_to 'Edit', edit_reply_path(reply) %></td>
-        <td><%= link_to 'Destroy', reply, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= reply.user_id %></td>
+        <td><%= reply.comment_id %></td>
+        <td><%= reply.content %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<%= link_to 'Back', :back %>
 <br>
 
-<%= link_to 'New Reply', new_reply_path %>

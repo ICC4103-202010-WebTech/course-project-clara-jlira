@@ -1,10 +1,9 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_user_id, only: [:index]
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all
   end
 
   # GET /messages/1
@@ -65,6 +64,10 @@ class MessagesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_message
       @message = Message.find(params[:id])
+    end
+
+    def set_user_id
+      @messages = Message.where('user_id = ?',params[:user_id])
     end
 
     # Only allow a list of trusted parameters through.
