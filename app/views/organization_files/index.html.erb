@@ -2,11 +2,11 @@
 
 <h1>Organization Files</h1>
 
-<table>
+<table width="30%">
   <thead>
     <tr>
-      <th>Index</th>
-      <th>Show</th>
+      <th>file_dir</th>
+      <th>file_type</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,16 +14,12 @@
   <tbody>
     <% @organization_files.each do |organization_file| %>
       <tr>
-        <td><%= organization_file.index %></td>
-        <td><%= organization_file.show %></td>
-        <td><%= link_to 'Show', organization_file %></td>
-        <td><%= link_to 'Edit', edit_organization_file_path(organization_file) %></td>
-        <td><%= link_to 'Destroy', organization_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= organization_file.file_dir %></td>
+        <td><%= organization_file.file_type %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<%= link_to 'Back', :back %>
 <br>
 
-<%= link_to 'New Organization File', new_organization_file_path %>

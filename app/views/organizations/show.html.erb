@@ -2,13 +2,14 @@
 
 <p>
   <strong>Index:</strong>
-  <%= @organization.index %>
+  <%= @organization.name %>
 </p>
 
 <p>
   <strong>Show:</strong>
-  <%= @organization.show %>
+  <%= @organization.description %>
 </p>
 
-<%= link_to 'Edit', edit_organization_path(@organization) %> |
 <%= link_to 'Back', organizations_path %>
+<%= link_to 'OrganizationFiles', organization_organization_files_path(@organization.id) %>
+<%= link_to 'memberships', organization_memberships_path(@organization.id) %>

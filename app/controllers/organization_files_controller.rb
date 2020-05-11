@@ -1,10 +1,10 @@
 class OrganizationFilesController < ApplicationController
   before_action :set_organization_file, only: [:show, :edit, :update, :destroy]
+  before_action :set_organization_id, only: [:index]
 
   # GET /organization_files
   # GET /organization_files.json
   def index
-    @organization_files = OrganizationFile.all
   end
 
   # GET /organization_files/1
@@ -65,6 +65,10 @@ class OrganizationFilesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_organization_file
       @organization_file = OrganizationFile.find(params[:id])
+    end
+
+    def set_organization_id
+      @organization_files = OrganizationFile.where('organization_id = ?',params[:organization_id])
     end
 
     # Only allow a list of trusted parameters through.

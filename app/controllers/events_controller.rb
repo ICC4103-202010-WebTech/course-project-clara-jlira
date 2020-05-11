@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @event = Event.find(params[:user_id])
+    @events = Event.all
   end
 
   # GET /events/1

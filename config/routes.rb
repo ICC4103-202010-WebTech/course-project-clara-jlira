@@ -11,33 +11,11 @@ Rails.application.routes.draw do
     resources :events , only: [:show, :index],shallow: true do
       resources :event_file,only: [:show, :index]
     end
-    resources :memberships, only: [:show, :index], shallow: true
-    resources :notifications, only: [:show, :index], shallow: true
-    resources :messages, only: [:show, :index], shallow: true
-    resources :replies, only: [:show, :index], shallow: true
-    resources :comments, only: [:show, :index], shallow: true
-    resources :reports, only: [:show, :index], shallow: true
-    resources :invitations , only: [:show, :index],shallow: true do
-      resources :votes,only: [:show, :index]
-    end
   end
+  resources :events, only: [:show, :index]
   resources :organizations, only: [:show, :index], shallow: true do
-    resources :memberships, only: [:show, :index], shallow: true
-    resources :organization_files, only: [:show, :index], shallow: true
+    resources :organization_files, only: [:show, :index]
+    resources :memberships, only: [:show, :index]
   end
-  resources :comments, only: [:show, :index], shallow: true do
-    resources :replies, only: [:show, :index], shallow: true
-  end
-  resources :events, only: [:show, :index], shallow: true do
-    resources :comments , only: [:show, :index],shallow: true do
-      resources :replies,only: [:show, :index]
-    end
-    resources :reports, only: [:show, :index], shallow: true
-    resources :invitations , only: [:show, :index],shallow: true do
-      resources :votes,only: [:show, :index]
-    end
-    resources :event_dates , only: [:show, :index],shallow: true
-    resources :pages
 
-  end
 end

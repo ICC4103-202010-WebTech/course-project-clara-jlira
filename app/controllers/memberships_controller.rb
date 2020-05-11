@@ -1,10 +1,10 @@
 class MembershipsController < ApplicationController
   before_action :set_membership, only: [:show, :edit, :update, :destroy]
+  before_action :set_organization_id, only: [:index]
 
   # GET /memberships
   # GET /memberships.json
   def index
-    @memberships = Membership.all
   end
 
   # GET /memberships/1
@@ -65,6 +65,10 @@ class MembershipsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_membership
       @membership = Membership.find(params[:id])
+    end
+
+    def set_organization_id
+      @memberships = Membership.where('organization_id = ?',params[:organization_id])
     end
 
     # Only allow a list of trusted parameters through.

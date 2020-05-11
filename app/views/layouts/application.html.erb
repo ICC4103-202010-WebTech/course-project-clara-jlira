@@ -10,6 +10,29 @@
   </head>
 
   <body>
-    <%= yield %>
+  <header>
+    <h1><%= link_to "Meating Manager", root_path %></h1>
+  </header>
+  <nav>
+    <ul id="navbar">
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "Events", events_path %></li>
+      <li><%= link_to "Organization", organizations_path %></li>
+      <li><%= link_to "User", users_path %></li>
+    </ul>
+  </nav>
+  <div id="container">
+    <aside>
+    </aside>
+    <main id="main_content">
+      <%= yield %>
+    </main>
+  </div>
+  <footer>
+    <h4>
+      Contact Information
+    </h4>
+    <p>Contact us at: help@ticketshop.com</p>
+  </footer>
   </body>
 </html>

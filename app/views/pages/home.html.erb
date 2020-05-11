@@ -1,2 +1,20 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h4>Home Events</h4>
+
+<table width="50%">
+  <thead>
+  <th>N</th>
+  <th>Event</th>
+  <th>Description</th>
+  <th>Location</th>
+  </thead>
+  <tbody>
+  <% @events.each_with_index do |event, i| %>
+    <tr>
+      <td><%= i+1 %></td>
+      <td><%= event.title %></td>
+      <td><%= event.description %></td>
+      <td><%= event.location %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
