@@ -13,3 +13,5 @@ rails g scaffold_controller reports index show
 rails g scaffold_controller users index show
 rails g scaffold_controller votes index show
 
+
+rails g controller pages index show
