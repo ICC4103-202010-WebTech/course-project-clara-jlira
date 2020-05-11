@@ -1,10 +1,9 @@
 class EventDatesController < ApplicationController
   before_action :set_event_date, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_event_id, only: [:index]
   # GET /event_dates
   # GET /event_dates.json
   def index
-    @event_dates = EventDate.all
   end
 
   # GET /event_dates/1
@@ -66,7 +65,9 @@ class EventDatesController < ApplicationController
     def set_event_date
       @event_date = EventDate.find(params[:id])
     end
-
+    def set_event_id
+      @event_dates = EventDate.where('event_id = ?',params[:event_id])
+    end
     # Only allow a list of trusted parameters through.
     def event_date_params
       params.require(:event_date).permit(:index, :show)

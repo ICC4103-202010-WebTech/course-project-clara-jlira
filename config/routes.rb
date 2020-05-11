@@ -12,7 +12,12 @@ Rails.application.routes.draw do
       resources :event_file,only: [:show, :index]
     end
   end
-  resources :events, only: [:show, :index]
+  resources :events, only: [:show, :index], shallow: true do
+    resources :event_files,only: [:show, :index]
+    resources :comments,only: [:show, :index]
+    resources :event_dates,only: [:show, :index]
+    resources :invitations,only: [:show, :index]
+  end
   resources :organizations, only: [:show, :index], shallow: true do
     resources :organization_files, only: [:show, :index]
     resources :memberships, only: [:show, :index]

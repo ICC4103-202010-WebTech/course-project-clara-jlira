@@ -10,4 +10,8 @@
   <%= @event.description %>
 </p>
 
-<%= link_to 'Back', Events %>
+<%= link_to 'Back', events_path %>
+<%= link_to 'EventFiles', event_event_files_path(@event.id) %>
+<%= link_to 'Comments', event_comments_path(@event.id) %>
+<%= link_to 'EventDate', event_event_dates_path(@event.id) %>
+<%= link_to 'Invitation', event_invitations_path(@event.id) %>

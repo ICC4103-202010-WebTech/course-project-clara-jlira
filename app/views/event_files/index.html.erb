@@ -2,11 +2,11 @@
 
 <h1>Event Files</h1>
 
-<table>
+<table width="30%">
   <thead>
     <tr>
-      <th>Index</th>
-      <th>Show</th>
+      <th>File_dir</th>
+      <th>File_type</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,16 +14,13 @@
   <tbody>
     <% @event_files.each do |event_file| %>
       <tr>
-        <td><%= event_file.index %></td>
-        <td><%= event_file.show %></td>
-        <td><%= link_to 'Show', event_file %></td>
-        <td><%= link_to 'Edit', edit_event_file_path(event_file) %></td>
-        <td><%= link_to 'Destroy', event_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= event_file.file_dir %></td>
+        <td><%= event_file.file_type %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<%= link_to 'Back', :back %>
 <br>
 
-<%= link_to 'New Event File', new_event_file_path %>
+

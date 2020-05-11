@@ -1,10 +1,9 @@
 class EventFilesController < ApplicationController
   before_action :set_event_file, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_event_id, only: [:index]
   # GET /event_files
   # GET /event_files.json
   def index
-    @event_files = EventFile.all
   end
 
   # GET /event_files/1
@@ -66,7 +65,9 @@ class EventFilesController < ApplicationController
     def set_event_file
       @event_file = EventFile.find(params[:id])
     end
-
+    def set_event_id
+      @event_files = EventFile.where('event_id = ?',params[:event_id])
+    end
     # Only allow a list of trusted parameters through.
     def event_file_params
       params.require(:event_file).permit(:index, :show)
