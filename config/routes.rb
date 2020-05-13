@@ -1,9 +1,22 @@
 Rails.application.routes.draw do
-  #namespace :api do
-  # namespace :v1 do
-
-  # end
-  #end
+  namespace :api do
+    namespace :v1 do
+      get 'comments/index'
+      get 'comments/show'
+    end
+  end
+  namespace :api do
+    namespace :v1 do
+      get 'events/index'
+      get 'events/show'
+    end
+  end
+  namespace :api, defaults: {format: 'json'} do
+   namespace :v1 do
+     resources :events
+     resources :comments
+   end
+  end
   #get 'pages/home'
   root 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

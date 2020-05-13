@@ -15,3 +15,5 @@ rails g scaffold_controller votes index show
 
 
 rails g controller pages index show
+rails g controller api/v1/events index show
+rails g controller api/v1/comments index show
