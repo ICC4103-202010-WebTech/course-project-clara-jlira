@@ -1,10 +1,10 @@
 <div class="col-md-4">
   <div class="card mb-4 shadow-sm">
-  <% if event %>
+    <% if event.picture.attached? %>
+      <%= link_to image_tag(event.picture, width: "300px", height: "300px"), url_for(event) %>
+    <% else %>
       <%= link_to image_tag("thumbnail.svg", class: "card-img-top", width: "100%", background: "#55595c", color: "#eceeef"), url_for(event) %>
-  <% else %>
-      <%= link_to image_tag("thumbnail.svg", class: "card-img-top", width: "100%", background: "#55595c", color: "#eceeef"), url_for(event) %>
-  <% end %>
+    <% end %>
     <div class="card-body">
       <p class="card-text"><%= link_to event.title, event %></p>
       <% if event.organization_event%>

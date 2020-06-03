@@ -7,5 +7,7 @@ class Event < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :reports, dependent: :destroy
 
+  has_one_attached :picture
+
   validates :title, presence: true
 end

@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    set_event_info
   end
 
   # GET /users/new
@@ -66,6 +67,12 @@ class UsersController < ApplicationController
     def set_user
       @user = User.find(params[:id])
     end
+  def set_event_info
+    @events = Event.all
+    @event_users = User.joins(:events)
+    @event_organizations = Organization.joins(:events)
+    @event_dates = EventDate.joins(:event)
+  end
 
     # Only allow a list of trusted parameters through.
     def user_params

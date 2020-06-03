@@ -38,14 +38,14 @@ Rails.application.routes.draw do
     resources :invitations,only: [:show, :index]
     resources :reports, only: [:show, :index]
   end
-  resources :organizations, only: [:show, :index], shallow: true do
+  resources :organizations, shallow: true do
     resources :organization_files, only: [:show, :index]
     resources :memberships, only: [:show, :index]
   end
-  resources :comments, only: [:show, :index], shallow: true do
+  resources :comments, shallow: true do
     resources :replies, only: [:show, :index]
   end
-  resources :event_dates, only: [:show, :index], shallow: true do
+  resources :event_dates, shallow: true do
     resources :votes, only: [:show, :index]
   end
 

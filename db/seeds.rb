@@ -5,9 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-u1 = User.create!(user_name: 'pepe',first_name:'pepe',last_name:'lira',address:'no tan lejos',password:'p',email:'jflira@gmail.com',phone:'9',admin:true)
-u2 = User.create!(user_name: 'Cristo',first_name:'cristobal',last_name:'lara',address:'un poco mas lejos',password:'c',email:'clara@gmail.com',phone:'1',admin:false)
-u3 = User.create!(user_name: 'Vito',first_name:'V',last_name:'C',address:'muy lejos',password:'v',email:'vcorleone@gmail.com',phone:'9',admin:false)
+u1 = User.create!(user_name: 'pepe',first_name:'pepe',last_name:'lira',address:'no tan lejos',password:'p',email:'jflira@gmail.com',phone:'9',admin:true,bio:"Soy de mentiras")
+u2 = User.create!(user_name: 'Cristo',first_name:'cristobal',last_name:'lara',address:'un poco mas lejos',password:'c',email:'clara@gmail.com',phone:'1',admin:false,bio:"Soy de mentiras")
+u3 = User.create!(user_name: 'Vito',first_name:'V',last_name:'C',address:'muy lejos',password:'v',email:'vcorleone@gmail.com',phone:'9',admin:false,bio:"Soy de mentiras")
 o0 = Organization.create!(name:'none',description:'none',contact:'none@none.com',location:'none')
 o1 = Organization.create!(name:'Vito\'s Corp',description:'Dog food corp',contact:'contact@vcorp.com',location:'NK')
 o2 = Organization.create!(name:'CIA',description:'Spy',contact:'Stan',location:'USA')
