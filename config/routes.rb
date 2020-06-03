@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   #get 'pages/home'
   root 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :users, only: [:show, :index], shallow: true do
+  resources :users, shallow: true do
     resources :memberships, only: [:show, :index]
     resources :events, only: [:show, :index]
     resources :messages, only: [:show, :index]
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :reports, only: [:show, :index]
     resources :votes, only: [:show, :index]
   end
-  resources :events, only: [:show, :index], shallow: true do
+  resources :events, shallow: true do
     resources :event_files,only: [:show, :index]
     resources :comments,only: [:show, :index]
     resources :event_dates,only: [:show, :index]

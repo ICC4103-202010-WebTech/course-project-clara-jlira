@@ -7,14 +7,35 @@
   <% end %>
     <div class="card-body">
       <p class="card-text"><%= link_to event.title, event %></p>
+      <% if event.organization_event%>
+        <% @event_organizations.each do |event_organization| %>
+          <% if event.organization_id == event_organization.id %>
+            <p class="card-text"><b>Organization:</b> <%= event_organization.name %></p>
+          <% end %>
+        <% end %>
+      <% else %>
+        <% @event_users.each do |event_user| %>
+          <% if event.user_id == event_user.id %>
+            <p class="card-text"><b>Author:</b> <%= event_user.user_name %></p>
+          <% end %>
+        <% end %>
+      <% end %>
       <p class="card-text"><%= event.description %></p>
-      <p class="card-text"><%= event.location %></p>
+      <p class="card-text"><b>Where:</b> <%= event.location %></p>
       <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">
           <button type="button" class="btn btn-sm btn-outline-secondary"><%= link_to "View", event %></button>
           <button type="button" class="btn btn-sm btn-outline-secondary"><%= link_to "Edit", event %></button>
         </div>
-        <small class="text-muted"><%= "#{(event.updated_at.to_date).to_s} days left!" %></small>
+
+        <% if event.state == "On Vote"%>
+          <small class="text-muted"><%= "Scheduled: On Vote" %></small>
+        <% end %>
+        <% @event_dates.each do |event_date| %>
+          <% if event.organization_id == event_date.event_id and event_date.final_date == true and event.state == "Voted"%>
+            <small class="text-muted"><%= "Scheduled: #{((event_date.event_option).to_date).to_s}" %></small>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>

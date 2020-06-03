@@ -16,3 +16,4 @@
 <%= link_to 'EventDate', event_event_dates_path(@event.id) %>
 <%= link_to 'Invitation', event_invitations_path(@event.id) %>
 <%= link_to 'Reports', event_reports_path(@event.id) %>
+<%= link_to "Edit Event", edit_event_path(@event.id), class: ["btn", "btn-primary"] %>

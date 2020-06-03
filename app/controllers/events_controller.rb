@@ -7,7 +7,7 @@ class EventsController < ApplicationController
     if params[:user_id]
       set_user_id
     else
-      @events = Event.all
+      set_event_info
     end
   end
 
@@ -24,6 +24,7 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+
   end
 
   # POST /events
@@ -67,16 +68,24 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
-    def set_user_id
-      @events = Event.where('user_id = ?',params[:user_id])
-    end
-    # Only allow a list of trusted parameters through.
-    def event_params
-      params.require(:event).permit(:index, :show)
-    end
+  def set_user_id
+    @events = Event.where('user_id = ?',params[:user_id])
+  end
+
+  def set_event_info
+    @events = Event.where.not(state: 'Closed')
+    @event_users = User.joins(:events)
+    @event_organizations = Organization.joins(:events)
+    @event_dates = EventDate.joins(:event)
+  end
+  # Only allow a list of trusted parameters through.
+  def event_params
+    params.require(:event).permit(
+        :title, :description, :location, :state, :private_event, :organization_event, :user_id, :organization_id)
+  end
 end
