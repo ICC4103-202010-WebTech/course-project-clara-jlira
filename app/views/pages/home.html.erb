@@ -1,15 +1,6 @@
-<div class="row ml-0 mt-3">
-  <h2>Welcome</h2>
-</div>
-<div class="row ml-0 mt-2">
-  <%= link_to 'Register', new_user_path , class: ["btn", "btn-primary"] %>
-</div>
-<div class="row ml-0 mt-2">
-  <%= link_to 'Log in', new_user_path , class: ["btn", "btn-secondary"] %>
-</div>
-
-<h1>Available Events</h1>
-<!-- el home solo muestra eventos que son publicos, se filtran los privados -->
+<div class="row ml-0 mt-3"></div>
+<h1>Available Public Events</h1>
+<!-- el home solo muestra eventos que son publicos, se filtran los privados con el atributo private_event  -->
 <div class="row">
   <% @events.each do |event| %>
     <% if event.private_event != true %>

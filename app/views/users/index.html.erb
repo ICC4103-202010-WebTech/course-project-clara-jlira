@@ -1,25 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Users</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Index</th>
-      <th>Show</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.user_name %></td>
-        <td><%= user.email %></td>
-        <td><%= link_to 'Show', user %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<div class="row ml-0">
+  <% @users.each do |user| %>
+    <div class="card ">
+      <div class="mx-auto card-header">
+        <% if user.avatar.attached? %>
+          <%= link_to image_tag(user.avatar, class: "bd-placeholder-img rounded-circle", width:"140",height:"140", background: "#55595c", color: "#eceeef"), url_for(user) %>
+        <% else %>
+          <%= link_to image_tag("thumbnail.svg", class: "bd-placeholder-img rounded-circle", width:"140",height:"140", background: "#55595c", color: "#eceeef"), url_for(user) %>
+        <% end %>
+      </div>
+      <div class="card-body">
+        <div class="p-1 "></div>
+        <h1><%=link_to user.user_name, user %></h1>
+        <p><strong>Email: </strong><%= user.email %></p>
+      </div>
+    </div>
+    <div class="m-1 bg-warning"></div>
+  <% end %>
+</div>
 <br>

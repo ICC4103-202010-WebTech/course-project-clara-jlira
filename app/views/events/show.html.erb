@@ -1,35 +1,51 @@
 <p id="notice"><%= notice %></p>
-<h1>Events</h1>
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
+<div class="row">
+  <div class="col-sm-4">
+    <% if @event.pictures.attached? %>
+      <%= image_tag(@event.pictures, class: "bd-placeholder-img", width:"100%", background: "#55595c", color: "#eceeef") %>
+    <% else %>
+      <%= image_tag("thumbnail.svg", class: "bd-placeholder-img", width:"100%", background: "#55595c", color: "#eceeef")%>
+    <% end %>
+    <p class="card-text"><strong>Title:<%= link_to @event.title, @event %></strong></p>
+    <% if @event.organization_event%>
+      <% @event_organizations.each do |event_organization| %>
+        <% if @event.organization_id == event_organization.id %>
+          <p class="card-text"><b>Organization:</b> <%= event_organization.name %></p>
+        <% end %>
+      <% end %>
+    <% else %>
+      <% @event_users.each do |event_user| %>
+        <% if @event.user_id == event_user.id %>
+          <p class="card-text"><b>Author:</b> <%= event_user.user_name %></p>
+        <% end %>
+      <% end %>
+    <% end %>
+    <p class="card-text"><b>Where:</b> <%= @event.location %></p>
+    <small class="text-muted"><%= "Created at: "+(@event.created_at).to_s %></small>
+    <% if @event.state == "On Vote"%>
+      <small class="text-muted"><%= "Scheduled: On Vote" %></small>
+    <% end %>
+    <% @event_dates.each do |event_date| %>
+      <% if @event.organization_id == event_date.event_id and event_date.final_date == true and @event.state == "Voted"%>
+        <small class="text-muted"><%= "Scheduled: #{((event_date.event_option).to_date).to_s}" %></small>
+      <% end %>
+    <% end %>
 
-<%= link_to 'Back', events_path %>
-<%= link_to 'EventFiles', event_event_files_path(@event.id) %>
-<%= link_to 'Comments', event_comments_path(@event.id) %>
-<%= link_to 'EventDate', event_event_dates_path(@event.id) %>
-<%= link_to 'Invitation', event_invitations_path(@event.id) %>
-<%= link_to 'Reports', event_reports_path(@event.id) %>
-<%= link_to "Edit Event", edit_event_path(@event.id), class: ["btn", "btn-primary"] %>
-
-<div class="col-md-6">
-  <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-    <div class="col-auto d-none d-lg-block">
-      <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-    </div>
-    <div class="col p-4 d-flex flex-column position-static">
-      <strong class="d-inline-block mb-2 text-primary">World</strong>
-      <h3 class="mb-0">Featured post</h3>
-      <div class="mb-1 text-muted">Nov 12</div>
-      <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="stretched-link">Continue reading</a>
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="btn-group">
+        <%= link_to "Edit Event", edit_event_path(@event.id), class: ["btn", "btn-primary"] %>
+      </div>
     </div>
 
   </div>
+  <div class="col-sm-8">
+    <p class="card-text">Description: <%= @event.description %></p>
+    <hr>
+    <h6>Event files</h6>
+    <%@event.files.each do |file| %>
+      <a href="<% url_for(file) %>" class="name"><% file.name %></a>
+    <% end %>
+  </div>
+
 </div>

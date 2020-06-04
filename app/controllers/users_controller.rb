@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     set_event_info
+
   end
 
   # GET /users/new
@@ -72,10 +73,12 @@ class UsersController < ApplicationController
     @event_users = User.joins(:events)
     @event_organizations = Organization.joins(:events)
     @event_dates = EventDate.joins(:event)
+    @invitation_event = Event.joins(:invitations)
   end
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:user_name, :first_name, :last_name, :address, :password, :phone, :email, :admin)
+      params.require(:user).permit(:user_name, :first_name, :last_name, :address, :password,
+                                   :phone, :email, :admin, :avatar, :bio)
     end
 end

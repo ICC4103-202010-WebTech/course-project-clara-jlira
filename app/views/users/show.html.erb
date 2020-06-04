@@ -1,35 +1,42 @@
 <p id="notice"><%= notice %></p>
-<h1><%= @user.user_name %></h1>
-<div class="col-lg-4">
-  <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-  <h2><%= @user.first_name %> <%= @user.last_name %></h2>
-  <p>
-    <strong>Email: </strong><%= @user.email %>
-  </p>
-  <p>
-    <strong>Address: </strong><%= @user.address %>
-  </p>
-  <p>
-    <strong>Phone: </strong><%= @user.phone %>
-  </p>
-  <p>
-    <strong>Bio: </strong><%= @user.bio %>
-  </p>
+<div class="row">
+  <div class="col-sm-4">
+    <% if @user.avatar.attached? %>
+      <%= link_to image_tag(@user.avatar, class: "bd-placeholder-img rounded-circle", width:"140",height:"140", background: "#55595c", color: "#eceeef"), url_for(@user) %>
+    <% else %>
+      <%= link_to image_tag("thumbnail.svg", class: "bd-placeholder-img rounded-circle", width:"140",height:"140", background: "#55595c", color: "#eceeef"), url_for(@user) %>
+    <% end %>
+
+    <div class="p-1 "></div>
+    <h1><%= @user.user_name %></h1>
+    <p><strong>Name: </strong><%= @user.first_name %> <%= @user.last_name %></p>
+    <p><strong>Email: </strong><%= @user.email %></p>
+    <p><strong>Address: </strong><%= @user.address %></p>
+    <p><strong>Phone: </strong><%= @user.phone %></p>
+  </div>
+  <div class="col-sm-8">
+    <div class="m-2 pb-5 "> </div>
+    <p><strong>Biography: </strong><%= @user.bio %></p>
+  </div>
 </div>
+
 <%= link_to 'Back', users_path , class: ["btn", "btn-primary"] %>
 <%= link_to 'Edit', edit_user_path , class: ["btn", "btn-primary"] %>
-<%= link_to 'Events', user_events_path(@user.id) %>
-<%= link_to 'Invitations', user_invitations_path(@user.id) %>
-<%= link_to 'Comments', user_comments_path(@user.id) %>
-<%= link_to 'Messages', user_messages_path(@user.id) %>
-<%= link_to 'Notifications', user_notifications_path(@user.id) %>
-<%= link_to 'Memberships', user_memberships_path(@user.id) %>
-<%= link_to 'Replies', user_replies_path(@user.id) %>
-<%= link_to 'Reports', user_reports_path(@user.id) %>
-<%= link_to 'Votes', user_votes_path(@user.id) %>
 
+<hr>
+<h1>User Events</h1>
 <div class="row">
   <% @events.each do |event| %>
+    <% if event.user_id == @user.id %>
+      <%= render partial: 'events/event_tile', locals: { event: event } %>
+    <% end %>
+  <% end %>
+</div>
+
+<hr>
+<h1>User Invited Events</h1>
+<div class="row">
+  <% @invitation_event.each do |event| %>
     <% if event.user_id == @user.id %>
       <%= render partial: 'events/event_tile', locals: { event: event } %>
     <% end %>
