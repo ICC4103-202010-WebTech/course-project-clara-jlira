@@ -26,8 +26,8 @@
     </div>
     <div class="form-group">
       <%= form.submit "submit", class: ["btn", "btn-primary"] %>
-      <%= link_to "Back", organizations_path, class: ["btn", "btn-primary"] %>
+      <%= link_to "Back", organization_path(@organization.id), class: ["btn", "btn-primary"] %>
     </div>
-  </div>
+    </div>
   <% end %>
   </div>

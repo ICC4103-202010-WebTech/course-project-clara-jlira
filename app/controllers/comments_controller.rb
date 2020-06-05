@@ -60,7 +60,11 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
+      if request.referer.include?("/admin")
+        format.html { redirect_to admin_events_comments_admin_path, notice: 'Organization was successfully destroyed.' }
+      else
+        format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
+      end
       format.json { head :no_content }
     end
   end
@@ -81,6 +85,6 @@ class CommentsController < ApplicationController
 
       # Only allow a list of trusted parameters through.
       def comment_params
-        params.require(:comment).permit(:index, :show)
+        params.require(:comment).permit(:content, :event_id,:user_id)
       end
 end

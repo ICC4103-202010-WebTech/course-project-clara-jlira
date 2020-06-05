@@ -17,6 +17,8 @@ class EventsController < ApplicationController
     @event_users = User.joins(:events)
     @event_organizations = Organization.joins(:events)
     @event_dates = EventDate.joins(:event)
+    set_invitations_info
+    set_comments_info
   end
 
   # GET /events/new
@@ -65,7 +67,11 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      if request.referer.include?("/admin")
+        format.html { redirect_to admin_events_admin_url, notice: 'Event was successfully destroyed.' }
+      else
+        format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      end
       format.json { head :no_content }
     end
   end
@@ -86,12 +92,18 @@ class EventsController < ApplicationController
     @event_organizations = Organization.joins(:events)
     @event_dates = EventDate.joins(:event)
   end
+  def set_invitations_info
+    @invitations = Invitation.where('event_id = ?',params[:id])
+  end
+  def set_comments_info
+    @comments = Comment.where('event_id = ?',params[:id])
+  end
   # Only allow a list of trusted parameters through.
   def event_params
     params.require(:event).permit(
         :title, :description, :location, :state, :private_event,
-        :organization_event, :user_id, :organization_id, :pictures, :videos, :files,
-        event_dates_attributes:[:id,:event_option, :final_date, :event_id,:_destroy]
+        :organization_event, :user_id, :organization_id, :pictures, videos:[], files:[],
+        event_dates_attributes:[:id, :event_option, :final_date, :event_id,:_destroy]
     )
   end
 end

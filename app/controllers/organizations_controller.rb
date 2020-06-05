@@ -60,7 +60,12 @@ class OrganizationsController < ApplicationController
   def destroy
     @organization.destroy
     respond_to do |format|
-      format.html { redirect_to organizations_url, notice: 'Organization was successfully destroyed.' }
+      if request.referer.include?("/admin")
+        format.html { redirect_to admin_organizations_admin_url, notice: 'Organization was successfully destroyed.' }
+      else
+        format.html { redirect_to organizations_url, notice: 'Organization was successfully destroyed.' }
+      end
+
       format.json { head :no_content }
     end
   end

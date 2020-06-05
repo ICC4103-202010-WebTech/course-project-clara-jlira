@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  get 'admin/events_admin'
+  get 'admin/organizations_admin'
+  get 'admin/events_comments_admin'
+
   namespace :api do
     namespace :v1 do
       get 'comments/index'
@@ -21,32 +26,32 @@ Rails.application.routes.draw do
   root 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users, shallow: true do
-    resources :memberships, only: [:show, :index]
-    resources :events, only: [:show, :index]
-    resources :messages, only: [:show, :index]
-    resources :notifications, only: [:show, :index]
-    resources :invitations, only: [:show, :index]
-    resources :replies, only: [:show, :index]
-    resources :comments, only: [:show, :index]
-    resources :reports, only: [:show, :index]
-    resources :votes, only: [:show, :index]
+    resources :memberships
+    resources :events
+    resources :messages
+    resources :notifications
+    resources :invitations
+    resources :replies
+    resources :comments
+    resources :reports
+    resources :votes
   end
   resources :events, shallow: true do
-    resources :event_files,only: [:show, :index]
-    resources :comments,only: [:show, :index]
-    resources :event_dates,only: [:show, :index]
-    resources :invitations,only: [:show, :index]
-    resources :reports, only: [:show, :index]
+    resources :event_files
+    resources :comments
+    resources :event_dates
+    resources :invitations
+    resources :reports
   end
   resources :organizations, shallow: true do
-    resources :organization_files, only: [:show, :index]
-    resources :memberships, only: [:show, :index]
+    resources :organization_files
+    resources :memberships
   end
   resources :comments, shallow: true do
-    resources :replies, only: [:show, :index]
+    resources :replies
   end
   resources :event_dates, shallow: true do
-    resources :votes, only: [:show, :index]
+    resources :votes
   end
 
 end
