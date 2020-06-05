@@ -5,11 +5,15 @@ class OrganizationsController < ApplicationController
   # GET /organizations.json
   def index
     @organizations = Organization.all
+    set_organization_info
   end
 
   # GET /organizations/1
   # GET /organizations/1.json
   def show
+    @events = Event.all
+    set_event_info
+    set_organization
   end
 
   # GET /organizations/new
@@ -65,10 +69,24 @@ class OrganizationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
       @organization = Organization.find(params[:id])
+      @organization_membership = Membership.joins(:organization)
+      @users = User.all
     end
 
+  def set_organization_info
+    @organization = Organization.all
+    @organization_membership = Membership.joins(:organization)
+    @users = User.all
+  end
+
+    def set_event_info
+      @events = Event.where.not(state: 'Closed')
+      @event_users = User.joins(:events)
+      @event_organizations = Organization.joins(:events)
+      @event_dates = EventDate.joins(:event)
+    end
     # Only allow a list of trusted parameters through.
     def organization_params
-      params.require(:organization).permit(:index, :show)
+      params.require(:organization).permit(:name,:description,:contact,:location)
     end
 end

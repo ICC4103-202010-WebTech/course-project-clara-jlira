@@ -1,15 +1,49 @@
 <p id="notice"><%= notice %></p>
-<h1>Organization</h1>
-<p>
-  <strong>Index:</strong>
-  <%= @organization.name %>
-</p>
 
-<p>
-  <strong>Show:</strong>
-  <%= @organization.description %>
-</p>
+<div class="row">
+  <div class="col-sm-4">
+    <% if @organization.pictures.attached? %>
+      <%= image_tag(@organization.pictures, class: "bd-placeholder-img", width:"100%", background: "#55595c", color: "#eceeef") %>
+    <% else %>
+      <%= image_tag("thumbnail.svg", class: "bd-placeholder-img", width:"100%", background: "#55595c", color: "#eceeef")%>
+    <% end %>
+    <div class="p-3 "></div><% @organization_membership.each do |organization_membership| %>
+      <% if @organization.id == organization_membership.organization_id %>
+        <% @users.each do |user| %>
+          <% if organization_membership.user_id == user.id %>
+            <% if organization_membership.role == 'Author' %>
+              <p class="card-text"><b>Author:</b> <%= user.user_name %></p>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <p class="card-text"><strong>Name:<%= link_to @organization.name, @organization %></strong></p>
+    <p class="card-text"><b>Where:</b> <%= @organization.location %></p>
+    <small class="text-muted"><%= "Created at: "+(@organization.created_at).to_s %></small>
 
-<%= link_to 'Back', organizations_path %>
-<%= link_to 'OrganizationFiles', organization_organization_files_path(@organization.id) %>
-<%= link_to 'memberships', organization_memberships_path(@organization.id) %>
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="btn-group">
+        <%= link_to "Edit Organization", edit_organization_path(@organization.id), class: ["btn", "btn-primary"] %>
+        <%= link_to "Back", organizations_path(@organization.id), class: ["btn", "btn-primary"] %>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-sm-8">
+    <p class="card-text">Description: <%= @organization.description %></p>
+    <hr>
+  </div>
+</div>
+
+<hr>
+<h1>Organization Events</h1>
+<div class="row">
+  <% @events.each do |event| %>
+    <% if event.organization_id == @organization.id %>
+      <% if event.private_event != true %>
+        <%= render partial: 'events/event_tile', locals: { event: event } %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
