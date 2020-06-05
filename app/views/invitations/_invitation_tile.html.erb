@@ -1,0 +1,5 @@
+<% @event_users.each do |user| %>
+  <%if user.id == invitation.user_id %>
+    <%= link_to  user.user_name, url_for(user) %>
+  <% end %>
+<% end %>

@@ -1,0 +1,6 @@
+<% @event_users.each do |user| %>
+  <%if user.id == comment.user_id %>
+    <td><b><%= link_to  user.user_name, url_for(user) %></b></td>
+    <td><%= comment.content %></td>
+  <% end %>
+<% end %>

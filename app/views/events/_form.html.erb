@@ -3,13 +3,6 @@
 
   <%= form_with model: event, local: true do |form| %>
     <div class="row ">
-      <div class="form-group">
-        <%= hidden_field_tag(:final_date, false)%>
-        <%= hidden_field_tag(:event_id, event.id)%>
-        <%= hidden_field_tag(:state, "On Vote")%>
-        <%= hidden_field_tag(:user_id, event.user_id)%>
-        <%= hidden_field_tag(:organization_id, 0)%>
-      </div>
       <div class="col- sm-4">
         <div class="form-group">
          <b> <%= form.label :title %></b>
@@ -25,11 +18,11 @@
         </div>
         <div class="form-group">
           <b> <%= form.label :files %></b>
-          <%= form.file_field :file, class: "form-control-file"%>
+          <%= form.file_field :file, multiple: true, direct_upload: true, class: "form-control-file"%>
         </div>
         <div class="form-group">
           <b> <%= form.label :videos %></b>
-          <%= form.file_field :videos, class: "form-control-file"%>
+          <%= form.file_field :videos, multiple: true, direct_upload: true, class: "form-control-file"%>
         </div>
         <div class="form-group">
          <b> <%= form.label :location %></b>
@@ -70,12 +63,19 @@
                   <%= event_dates_form.label "Delete"%>
                   <%= event_dates_form.check_box :_destroy %>
                 <% end %>
+                <%= event_dates_form.submit "submit", class: ["btn", "btn-primary"] %>
                 <hr>
               </div>
             <% end %>
           </div>
         </div>
       </div>
-
+      <div class="form-group">
+        <%= hidden_field_tag(:final_date, false)%>
+        <%= hidden_field_tag(:event_id, event.id)%>
+        <%= hidden_field_tag(:state, "On Vote")%>
+        <%= hidden_field_tag(:user_id, event.user_id)%>
+        <%= hidden_field_tag(:organization_id, 0)%>
+      </div>
     <% end %>
   </div>
