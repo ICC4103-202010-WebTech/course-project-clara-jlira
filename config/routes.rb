@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'search/search'
+
   get 'admin/events_admin'
   get 'admin/organizations_admin'
   get 'admin/events_comments_admin'
