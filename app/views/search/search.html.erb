@@ -1,10 +1,17 @@
 <h1>Search Results</h1>
 <div class="p-2 "></div>
 <table>
-  <h2>Events Found</h2>
+  <h2>Events Found by Name</h2>
   <hr>
   <div class="row">
     <% @events.each do |event| %>
+      <%= render partial: 'events/event_tile', locals: { event: event } %>
+    <% end %>
+  </div>
+  <h2>Events Found by Description</h2>
+  <hr>
+  <div class="row">
+    <% @events_d.each do |event| %>
       <%= render partial: 'events/event_tile', locals: { event: event } %>
     <% end %>
   </div>

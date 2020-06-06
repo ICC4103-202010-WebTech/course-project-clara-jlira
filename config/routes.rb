@@ -3,8 +3,19 @@ Rails.application.routes.draw do
   get 'search/search'
 
   get 'admin/events_admin'
+  post 'admin/events_admin'
+  patch 'admin/events_admin'
+  delete 'admin/events_admin'
+
   get 'admin/organizations_admin'
+  post 'admin/organizations_admin'
+  patch 'admin/organizations_admin'
+  delete 'admin/organizations_admin'
+
   get 'admin/events_comments_admin'
+  post 'admin/events_comments_admin'
+  patch 'admin/events_comments_admin'
+  delete 'admin/events_comments_admin'
 
   namespace :api do
     namespace :v1 do

@@ -1,6 +1,7 @@
 class SearchController < ApplicationController
   def search
     @events = Event.where("title LIKE ?","%#{params[:search]}%")
+    @events_d = Event.where("description LIKE ?","%#{params[:search]}%")
     @event_users = User.joins(:events)
     @event_organizations = Organization.joins(:events)
     @event_dates = EventDate.joins(:event)
