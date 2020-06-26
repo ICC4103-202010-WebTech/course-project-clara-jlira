@@ -28,15 +28,20 @@
           <li class="nav-item">
             <a class="nav-link" href="<%= organizations_path %>">Organization</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= users_path %>">User</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= new_user_path %>">Register</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= admin_events_admin_path %>" >Admin</a>
-          </li>
+          <%if user_signed_in? %>
+            <li class="nav-item"><%=link_to "Profile", current_user, class: "nav-link"%></li>
+            <li class="nav-item">
+              <a class="nav-link" href="<%= admin_events_admin_path %>" >Admin</a>
+            </li>
+          <%end %>
+          <%if user_signed_in? %>
+            <li class="nav-item"><%= link_to "Sign Out", destroy_user_session_path, method: "delete", class: "nav-link" %></li>
+          <%else%>
+            <li class="nav-item"><%= link_to "Sign In",user_session_path , class: "nav-link" %></li>
+            <li class="nav-item">
+              <a class="nav-link" href="<%= new_user_registration_path %>">Register</a>
+            </li>
+          <%end %>
         </ul>
         <form class="form-inline mt-2 mt-md-0" action="/search/search">
           <%= text_field_tag :search, params[:search] %>
