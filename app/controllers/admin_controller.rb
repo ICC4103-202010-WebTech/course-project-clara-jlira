@@ -11,6 +11,10 @@ class AdminController < ApplicationController
     @events = Event.all
   end
 
+  def users_admin
+    @users = User.all
+  end
+
   def new
   end
 

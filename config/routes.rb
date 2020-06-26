@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
   get 'search/search'
 
+  get 'admin/users_admin'
+  post 'admin/users_admin'
+  patch 'admin/users_admin'
+  delete 'admin/users_admin'
+
   get 'admin/events_admin'
   post 'admin/events_admin'
   patch 'admin/events_admin'

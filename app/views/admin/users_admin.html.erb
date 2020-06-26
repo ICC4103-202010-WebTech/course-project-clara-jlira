@@ -22,12 +22,11 @@
     <thead>
     <tr>
       <th>ID</th>
-      <th>Title</th>
-      <th>State</th>
+      <th>User Name</th>
+      <th>First Name</th>
+      <th>Last Name</th>
       <th>Created_at</th>
       <th>Updated_at</th>
-      <th>User ID</th>
-      <th>Organization ID</th>
       <th> </th>
       <th> </th>
       <th> </th>
@@ -35,22 +34,20 @@
     </thead>
     <tbody>
 
-    <% @events.each do |event| %>
+    <% @users.each do |event| %>
       <tr>
         <td><%= event.id %></td>
-        <td><%= event.title %></td>
-        <td><%= event.state %></td>
+        <td><%= event.user_name %></td>
+        <td><%= event.first_name %></td>
+        <td><%= event.last_name %></td>
         <td><%= event.created_at %></td>
         <td><%= event.updated_at %></td>
-        <td><%= event.user_id %></td>
-        <td><%= event.organization_id %></td>
-        <td><%= link_to "View", event_path(event.id), class: ["btn", "btn-primary"] %><td>
-        <td><%= link_to "Edit", edit_event_path(event.id), class: ["btn", "btn-primary"] %><td>
-        <td><%= link_to "Delete", event_path(event.id) , method: :delete, data: { confirm: 'Are you certain you want to delete this?' }, class: ["btn", "btn-primary"] %><td>
+        <td><%= link_to "View", user_path(event.id), class: ["btn", "btn-primary"] %><td>
+        <td><%= link_to "Edit", edit_user_path(event.id), class: ["btn", "btn-primary"] %><td>
+        <td><%= link_to "Delete", user_path(event.id) , method: :delete, data: { confirm: 'Are you certain you want to delete this?' }, class: ["btn", "btn-primary"] %><td>
       </tr>
     <% end %>
     </tbody>
   </table>
-  <%= link_to "Create", new_event_path, class: ["btn", "btn-primary"] %>
+  <%= link_to "Create", new_user_path, class: ["btn", "btn-primary"] %>
 </div>
-
