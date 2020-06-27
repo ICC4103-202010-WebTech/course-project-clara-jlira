@@ -8,8 +8,8 @@ class Event < ApplicationRecord
   has_many :reports, dependent: :destroy
 
   accepts_nested_attributes_for :event_dates, allow_destroy: true
-  has_one_attached :pictures
-  has_many_attached :files
+  has_one_attached :picture
+  has_many_attached :files_things
   has_many_attached :videos
 
   validates :title, presence: true

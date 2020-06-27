@@ -1,7 +1,7 @@
 <div class="col-md-4">
   <div class="card mb-4 shadow-sm">
-    <% if event.pictures.attached? %>
-      <%= link_to image_tag(event.pictures, width: "100%"), url_for(event) %>
+    <% if event.picture.attached? %>
+      <%= link_to image_tag(event.picture, width: "100%"), url_for(event) %>
     <% else %>
       <%= link_to image_tag("thumbnail.svg", class: "card-img-top", width: "100%", background: "#55595c", color: "#eceeef"), url_for(event) %>
     <% end %>

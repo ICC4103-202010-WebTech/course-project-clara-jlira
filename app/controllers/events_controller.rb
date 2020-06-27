@@ -102,7 +102,7 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(
         :title, :description, :location, :state, :private_event,
-        :organization_event, :user_id, :organization_id, :pictures, videos:[], files:[],
+        :organization_event, :user_id, :organization_id, :picture, videos:[], files_things:[],
         event_dates_attributes:[:id, :event_option, :final_date, :event_id,:_destroy]
     )
   end
