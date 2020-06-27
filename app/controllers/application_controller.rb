@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def after_sign_in_path_for()
-    current_user
+  def after_sign_in_path_for(resources)
+   current_user
   end
 
   def configure_permitted_parameters

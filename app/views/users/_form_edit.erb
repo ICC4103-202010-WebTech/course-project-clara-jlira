@@ -29,20 +29,13 @@
       <%=form.text_field :phone, class:"form-control" %>
     </div>
     <div class="form-group"></b>
-      <b><%= form.label :email %>
-      <%=form.text_field :email, class:"form-control" %>
+      <%=form.text_field :email, class:"form-control", hidden: true %>
     </div>
     <div class="form-group"></b>
-      <b><%= form.label :admin %>
-      <%=form.check_box :admin %>
+      <%=form.check_box :admin, required: false, hidden: true%>
     </div>
-    <div class="form-group">
-      <b><%= form.label :password %></b>
-      <%=form.text_field :password, value: @user.password , class:"form-control" %>
-    </div>
-
     <div class="form-group mt-2">
-      <%= form.submit "submit", class: ["btn", "btn-primary"] %>
+      <%= form.button :submit, class: ["btn", "btn-primary"] %>
       <%= link_to "Back", :back, class: ["btn", "btn-secondary"] %>
     </div>
   <% end %>

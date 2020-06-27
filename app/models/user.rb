@@ -24,7 +24,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
 
-  validates :user_name, :first_name, :last_name, :address, :password, presence: true
+  validates :user_name, :first_name, :last_name, :address, presence: true
   validates :user_name, uniqueness: true
   validates :email, presence: true, email: true
   validates :email, uniqueness: true
