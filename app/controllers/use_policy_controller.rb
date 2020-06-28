@@ -1,0 +1,3 @@
+class UsePolicyController < ApplicationController
+
+end

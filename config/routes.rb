@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   get 'search/search'
+  get 'use_policy/use_policy'
 
   get 'admin/users_admin'
   post 'admin/users_admin'
