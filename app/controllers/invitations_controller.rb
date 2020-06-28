@@ -36,7 +36,7 @@ class InvitationsController < ApplicationController
         format.html { redirect_to @invitation, notice: 'Invitation was successfully created.' }
         format.json { render :show, status: :created, location: @invitation }
       else
-        format.html { render :new }
+        format.html { redirect_to new_event_invitation_path(params[:event_id]), alert: 'Event can\'t be updated.'}
         format.json { render json: @invitation.errors, status: :unprocessable_entity }
       end
     end
@@ -82,6 +82,6 @@ class InvitationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def invitation_params
-      params.require(:invitation).permit(:index, :show)
+      params.require(:invitation).permit(:user_id, :event_id, :acceptance)
     end
 end

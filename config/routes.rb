@@ -72,5 +72,6 @@ Rails.application.routes.draw do
   resources :event_dates, shallow: true do
     resources :votes
   end
+  resources :invitations
 
 end

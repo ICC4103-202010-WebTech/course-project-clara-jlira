@@ -56,7 +56,7 @@ class EventsController < ApplicationController
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
-        format.html { render :edit }
+        format.html { redirect_to edit_event_path(params[:id]), alert: 'Event can\'t be updated.'}
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end

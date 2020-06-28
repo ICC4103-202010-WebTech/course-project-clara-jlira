@@ -2,13 +2,13 @@
 
 <p>
   <strong>Index:</strong>
-  <%= @invitation.index %>
+  <%= @invitation.user_id %>
 </p>
 
 <p>
   <strong>Show:</strong>
-  <%= @invitation.show %>
+  <%= @invitation.acceptance %>
 </p>
 
 <%= link_to 'Edit', edit_invitation_path(@invitation) %> |
-<%= link_to 'Back', invitations_path %>
+<%= link_to 'Back', invitation_path %>

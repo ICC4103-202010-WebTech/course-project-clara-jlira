@@ -29,11 +29,14 @@
             <a class="nav-link" href="<%= organizations_path %>">Organization</a>
           </li>
           <%if user_signed_in? %>
-            <li class="nav-item"><%=link_to "Profile", current_user, class: "nav-link"%></li>
+            <li class="nav-item"><%=link_to current_user.user_name, current_user, class: "nav-link"%></li>
             <li class="nav-item">
               <a class="nav-link" href="<%= admin_events_admin_path %>" >Admin</a>
             </li>
           <%end %>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= message_path %>">Messages</a>
+          </li>
           <%if user_signed_in? %>
             <li class="nav-item"><%= link_to "Sign Out", destroy_user_session_path, method: "delete", class: "nav-link" %></li>
           <%else%>
@@ -52,20 +55,16 @@
 
     <h1><%= link_to "Meating Manager", root_path %></h1>
   </header>
-  <!--
-  <nav>
-    <ul id="navbar">
-      <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "Events", events_path %></li>
-      <li><%= link_to "Organization", organizations_path %></li>
-      <li><%= link_to "User", users_path %></li>
-    </ul>
-  </nav>
-  -->
 
   <div class="album py-5 bg-light">
     <div class="container">
         <main id="main_content">
+          <% if notice.present? %>
+            <%= render partial: "notice" %>
+          <% end %>
+          <% if alert.present? %>
+            <%= render partial: "alert" %>
+          <% end %>
           <%= yield %>
         </main>
       </div>
