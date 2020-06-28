@@ -5,13 +5,13 @@ Team:
 * Cristobal Lara
 * Jose Lira
 
-Implementations:
-
-
 Pending Implementations:
 
-System Acces:
-Log in with Google authentication couldnt be implented, even though we try to.
+User Name: jflira@gmail.com
+Password: 123123123
+
+System Access:
+Log in with Google authentication couldnt be implemented, even though we try to.
 
 User Administration:
 Last access is not implemented.
@@ -36,6 +36,9 @@ The search for events by creator and organization were not implemented.
 Features and Details:
 There was created a ghost organization for the events that do not belong to any organization.
 We did not create a model for administrators becuase when we implented it as showned in lab 12, it made the Login Feature fail.
+Every user has a mailbox and inside there is a list of the inivitations.
+To edit an event, the event date must be a future date and must not be blank.
+
 
 API Test:
 Postman link: https://www.getpostman.com/collections/e37fd4099545edb3de4f
