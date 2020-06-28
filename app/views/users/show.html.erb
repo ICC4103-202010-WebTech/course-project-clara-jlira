@@ -13,6 +13,13 @@
     <p><strong>Email: </strong><%= @user.email %></p>
     <p><strong>Address: </strong><%= @user.address %></p>
     <p><strong>Phone: </strong><%= @user.phone %></p>
+    <p><strong>Role: </strong>
+      <% if @user.admin %>
+        Administrador
+      <% else %>
+        No Role
+      <% end %></p>
+
   </div>
   <div class="col-sm-8">
     <div class="m-2 pb-5 "> </div>

@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
+    @invitations = Invitation.where('id = ?',params[:invitation_id])
   end
 
   # GET /messages/1

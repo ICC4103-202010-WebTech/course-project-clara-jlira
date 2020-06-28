@@ -1,8 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Messages</h1>
-
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Message</th>
@@ -14,9 +12,9 @@
     <% @messages.each do |message| %>
       <tr>
         <td><%= message.message %></td>
+        <td><%= link_to "Invitation", Invitation.where('id = ?',message.invitation_id)[0] %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to 'Back', :back %>
 <br>

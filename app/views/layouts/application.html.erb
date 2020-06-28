@@ -34,9 +34,11 @@
               <a class="nav-link" href="<%= admin_events_admin_path %>" >Admin</a>
             </li>
           <%end %>
+          <%if user_signed_in? %>
           <li class="nav-item">
-            <a class="nav-link" href="<%= message_path %>">Messages</a>
+            <a class="nav-link" href="<%= user_messages_path(current_user.id) %>">Messages</a>
           </li>
+          <%end %>
           <%if user_signed_in? %>
             <li class="nav-item"><%= link_to "Sign Out", destroy_user_session_path, method: "delete", class: "nav-link" %></li>
           <%else%>
