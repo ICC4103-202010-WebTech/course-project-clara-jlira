@@ -1,11 +1,25 @@
 <h1>Search Results</h1>
 <div class="p-2 "></div>
 <table>
-  <h2>Events Found by Name</h2>
+  <h2>Events Found</h2>
   <hr>
   <div class="row">
     <% @events.each do |event| %>
       <%= render partial: 'events/event_tile', locals: { event: event } %>
+    <% end %>
+    <%@users_u.each do |user| %>
+      <% @events_all.each do |event| %>
+        <%if user.id == event.user_id %>
+          <%= render partial: 'events/event_tile', locals: { event: event } %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <%@organizations.each do |organization| %>
+      <% @events_all.each do |event| %>
+        <%if organization.id == event.organization_id%>
+          <%= render partial: 'events/event_tile', locals: { event: event } %>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
   <h2>Organizations Found</h2>

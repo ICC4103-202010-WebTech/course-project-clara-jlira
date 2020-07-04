@@ -8,6 +8,7 @@ class SearchController < ApplicationController
     @organization_membership = Membership.joins(:organization)
     @users = User.all
     @users_u = User.where("user_name LIKE ?","%#{params[:search]}%").or(User.where("first_name LIKE ?","%#{params[:search]}%"))
+    @events_all = Event.all
   end
 
   private
