@@ -18,6 +18,8 @@ class EventsController < ApplicationController
     @event_organizations = Organization.joins(:events)
     @event_dates = EventDate.joins(:event)
     set_invitations_info
+    puts('Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+    puts(@invitations.inspect)
     set_comments_info
   end
 

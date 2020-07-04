@@ -30,7 +30,7 @@ class InvitationsController < ApplicationController
   # POST /invitations.json
   def create
     @invitation = Invitation.new(invitation_params)
-
+    puts(@invitation.inspect)
     respond_to do |format|
       if @invitation.save
         format.html { redirect_to @invitation, notice: 'Invitation was successfully created.' }

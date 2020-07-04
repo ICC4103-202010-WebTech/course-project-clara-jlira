@@ -88,13 +88,11 @@
     <div class="col">
       <h4>Guests</h4>
       <table class="table table-bordered">
-        <tr>
-          <% @invitations.each do |invitation| %>
-            <% if invitation.user_id != @event.user_id %>
-              <td><%= render partial: 'invitations/invitation_tile', locals: { invitation: invitation } %></td>
-            <% end %>
-          <% end %>
-        </tr>
+        <% @invitations.each do |invitation| %>
+          <tr>
+            <td><%= render partial: 'invitations/invitation_tile', locals: { invitation: invitation } %></td>
+          </tr>
+        <% end %>
         <tr>
           <td>
             <div class="btn-group">
