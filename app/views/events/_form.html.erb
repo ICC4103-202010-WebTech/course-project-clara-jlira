@@ -1,4 +1,14 @@
+<% if event.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
+    <ul>
+      <% event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
   <%= form_with model: event, local: true do |form| %>
     <div class="row ">
       <div class="col ">
@@ -38,11 +48,6 @@
         <div class="form-group">
           <%= form.label :organization %>
           <%= form.collection_select(:organization_id, Organization.all.order(name: :asc), :id, :name, {}, { class: "form-control" }) %>
-        </div>
-        <div>
-          <%= form.hidden_field(:state, value:  "On Vote")%>
-          <%= form.hidden_field(:user_id, value:  current_user.id)%>
-          <%= form.hidden_field(:organization_id, value:  0)%>
         </div>
       </div>
       <div class="col ">
@@ -85,4 +90,8 @@
       <%= link_to "Back", :back, class: ["btn", "btn-secondary"] %>
     </div>
   </div>
+    <div>
+      <%= form.hidden_field(:state, value:  "On Vote")%>
+      <%= form.hidden_field(:user_id, value:  current_user.id)%>
+    </div>
 <% end %>

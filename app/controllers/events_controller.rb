@@ -50,6 +50,8 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    puts("holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    puts(event_params)
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
@@ -99,10 +101,8 @@ class EventsController < ApplicationController
   end
   # Only allow a list of trusted parameters through.
   def event_params
-    params.require(:event).permit(
-        :title, :description, :location, :state, :private_event,
+    params.require(:event).permit(:title, :description, :location, :state, :private_event,
         :organization_event, :user_id, :organization_id, :picture, videos:[], files_things:[],
-        event_dates_attributes:[:id, :event_option, :final_date, :event_id,:_destroy]
-    )
+        event_dates_attributes:[:id, :event_option, :final_date, :event_id,:_destroy])
   end
 end
