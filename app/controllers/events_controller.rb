@@ -14,19 +14,16 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @event_users = User.joins(:events)
+    @event_users = User.all
     @event_organizations = Organization.joins(:events)
     @event_dates = EventDate.joins(:event)
     set_invitations_info
-    puts('Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
-    puts(@invitations.inspect)
     set_comments_info
   end
 
   # GET /events/new
   def new
     @event = Event.new
-
   end
 
   # GET /events/1/edit

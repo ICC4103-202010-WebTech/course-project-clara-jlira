@@ -1,10 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Events</h1>
-
-<div class="row">
-  <% @events.each do |event| %>
-    <%= render partial: 'event_tile', locals: { event: event } %>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Events</h1>
+    </div>
+    <div class="col">
+      <%= link_to "Start a new Event", new_event_path, class: ["btn", "btn-primary"] %>
+    </div>
+  </div>
+  <div class="row">
+    <% @events.each do |event| %>
+      <%= render partial: 'event_tile', locals: { event: event } %>
+    <% end %>
+  </div>
 </div>
+
+
+
 

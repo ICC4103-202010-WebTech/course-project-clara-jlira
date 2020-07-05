@@ -30,13 +30,12 @@ class InvitationsController < ApplicationController
   # POST /invitations.json
   def create
     @invitation = Invitation.new(invitation_params)
-    puts(@invitation.inspect)
     respond_to do |format|
       if @invitation.save
         format.html { redirect_to @invitation, notice: 'Invitation was successfully created.' }
         format.json { render :show, status: :created, location: @invitation }
       else
-        format.html { redirect_to new_event_invitation_path(params[:event_id]), alert: 'Event can\'t be updated.'}
+        format.html { redirect_to new_event_invitation_path(@invitation.event_id), alert: 'Event can\'t be updated.'}
         format.json { render json: @invitation.errors, status: :unprocessable_entity }
       end
     end

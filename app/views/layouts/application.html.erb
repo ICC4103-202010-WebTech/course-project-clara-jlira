@@ -10,68 +10,68 @@
   </head>
 
   <body>
-  <header>
-
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="<%= root_path %>">Meating Manager</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="<%= root_path %>">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= events_path %>">Events</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= organizations_path %>">Organization</a>
-          </li>
-          <%if user_signed_in? %>
-            <li class="nav-item"><%=link_to current_user.user_name, current_user, class: "nav-link"%></li>
-            <li class="nav-item">
-              <a class="nav-link" href="<%= admin_events_admin_path %>" >Admin</a>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="<%= root_path %>">Meeting Manager</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="<%= root_path %>">Home <span class="sr-only">(current)</span></a>
             </li>
-          <%end %>
-          <%if user_signed_in? %>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= user_messages_path(current_user.id) %>">Messages</a>
-          </li>
-          <%end %>
-          <%if user_signed_in? %>
-            <li class="nav-item"><%= link_to "Sign Out", destroy_user_session_path, method: "delete", class: "nav-link" %></li>
-          <%else%>
-            <li class="nav-item"><%= link_to "Sign In",user_session_path , class: "nav-link" %></li>
             <li class="nav-item">
-              <a class="nav-link" href="<%= new_user_registration_path %>">Register</a>
+              <a class="nav-link" href="<%= events_path %>">Events</a>
             </li>
-          <%end %>
-        </ul>
-        <form class="form-inline mt-2 mt-md-0" action="/search/search">
-          <%= text_field_tag :search, params[:search] %>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </div>
-    </nav>
+            <li class="nav-item">
+              <a class="nav-link" href="<%= organizations_path %>">Organization</a>
+            </li>
+            <%if user_signed_in? %>
+              <li class="nav-item"><%=link_to current_user.user_name, current_user, class: "nav-link"%></li>
+              <li class="nav-item">
+                <a class="nav-link" href="<%= admin_events_admin_path %>" >Admin</a>
+              </li>
+            <%end %>
+            <%if user_signed_in? %>
+            <li class="nav-item">
+              <a class="nav-link" href="<%= user_messages_path(current_user.id) %>">Messages</a>
+            </li>
+            <%end %>
+            <%if user_signed_in? %>
+              <li class="nav-item"><%= link_to "Sign Out", destroy_user_session_path, method: "delete", class: "nav-link" %></li>
+            <%else%>
+              <li class="nav-item"><%= link_to "Sign In",user_session_path , class: "nav-link" %></li>
+              <li class="nav-item">
+                <a class="nav-link" href="<%= new_user_registration_path %>">Register</a>
+              </li>
+            <%end %>
+          </ul>
+          <form class="form-inline mt-2 mt-md-0" action="/search/search">
+            <%= text_field_tag :search, params[:search] %>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
 
-    <h1><%= link_to "Meating Manager", root_path %></h1>
-  </header>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-        <main id="main_content">
-          <% if notice.present? %>
-            <%= render partial: "notice" %>
-          <% end %>
-          <% if alert.present? %>
-            <%= render partial: "alert" %>
-          <% end %>
-          <%= yield %>
-        </main>
+      <h1><%= link_to "Meeting Manager", root_path %></h1>
+    </header>
+  <body>
+    <div class="album py-5 bg-light">
+      <div class="container">
+          <main id="main_content">
+            <% if notice.present? %>
+              <%= render partial: "notice" %>
+            <% end %>
+            <% if alert.present? %>
+              <%= render partial: "alert" %>
+            <% end %>
+            <%= yield %>
+          </main>
+        </div>
       </div>
     </div>
-  </div>
+  </body>
   <footer>
     <h4>
       Contact Information

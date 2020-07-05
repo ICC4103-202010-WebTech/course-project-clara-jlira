@@ -45,6 +45,13 @@ Rails.application.routes.draw do
   #get 'pages/home'
   root 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :events, shallow: true do
+    resources :event_files
+    resources :comments
+    resources :event_dates
+    resources :invitations
+    resources :reports
+  end
   resources :users, shallow: true do
     resources :memberships
     resources :events
@@ -55,13 +62,6 @@ Rails.application.routes.draw do
     resources :comments
     resources :reports
     resources :votes
-  end
-  resources :events, shallow: true do
-    resources :event_files
-    resources :comments
-    resources :event_dates
-    resources :invitations
-    resources :reports
   end
   resources :organizations, shallow: true do
     resources :organization_files

@@ -1,5 +1,9 @@
 <h1>New Event</h1>
 
-<%= render 'form', event: @event %>
-
-<%= link_to 'Back', events_path %>
+<%= render partial: "form",
+           locals: {
+               event: @event,
+               submit_btn_text: "Update",
+               event_date_section_title: "Edit event dates options",
+               event_date_instruction_text: "You may edit existing event dates options for your event"
+           } %>
