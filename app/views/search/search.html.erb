@@ -1,53 +1,55 @@
 <h1>Search Results</h1>
 <div class="p-2 "></div>
 <table>
-  <h2>Events Found</h2>
-  <hr>
-  <div class="row">
-    <% @events.each do |event| %>
-      <%= render partial: 'events/event_tile', locals: { event: event } %>
-    <% end %>
-    <%@users_u.each do |user| %>
-      <% @events_all.each do |event| %>
-        <%if user.id == event.user_id %>
-          <%= render partial: 'events/event_tile', locals: { event: event } %>
-        <% end %>
+  <%if params[:search] != ""%>
+    <h2>Events Found</h2>
+    <hr>
+    <div class="row">
+      <% @events.each do |event| %>
+        <%= render partial: 'events/event_tile', locals: { event: event } %>
       <% end %>
-    <% end %>
-    <%@organizations.each do |organization| %>
       <% @events_all.each do |event| %>
-        <%if organization.id == event.organization_id%>
-          <%= render partial: 'events/event_tile', locals: { event: event } %>
-        <% end %>
-      <% end %>
-    <% end %>
-  </div>
-  <h2>Organizations Found</h2>
-  <hr>
-  <div class="row">
-    <% @organizations.each do |organization| %>
-      <%= render partial: 'organizations/organization_tile', locals: { organization: organization } %>
-    <% end %>
-  </div>
-  <h2>Users Found</h2>
-  <hr>
-  <div class="row ml-0">
-    <% @users_u.each do |user| %>
-      <div class="card ">
-        <div class="mx-auto card-header">
-          <% if user.avatar.attached? %>
-            <%= link_to image_tag(user.avatar, class: "bd-placeholder-img rounded-circle", width:"140",height:"140", background: "#55595c", color: "#eceeef"), url_for(user) %>
-          <% else %>
-            <%= link_to image_tag("thumbnail.svg", class: "bd-placeholder-img rounded-circle", width:"140",height:"140", background: "#55595c", color: "#eceeef"), url_for(user) %>
+        <%@users_u.each do |user| %>
+          <%if user.id == event.user_id %>
+            <%= render partial: 'events/event_tile', locals: { event: event } %>
           <% end %>
+        <% end %>
+        <%@organizations.each do |organization| %>
+          <%if organization.id == event.organization_id%>
+            <%= render partial: 'events/event_tile', locals: { event: event } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <h2>Organizations Found</h2>
+    <hr>
+    <div class="row">
+      <% @organizations.each do |organization| %>
+        <%= render partial: 'organizations/organization_tile', locals: { organization: organization } %>
+      <% end %>
+    </div>
+    <h2>Users Found</h2>
+    <hr>
+    <div class="row ml-0">
+      <% @users_u.each do |user| %>
+        <div class="card ">
+          <div class="mx-auto card-header">
+            <% if user.avatar.attached? %>
+              <%= link_to image_tag(user.avatar, class: "bd-placeholder-img rounded-circle", width:"140",height:"140", background: "#55595c", color: "#eceeef"), url_for(user) %>
+            <% else %>
+              <%= link_to image_tag("thumbnail.svg", class: "bd-placeholder-img rounded-circle", width:"140",height:"140", background: "#55595c", color: "#eceeef"), url_for(user) %>
+            <% end %>
+          </div>
+          <div class="card-body">
+            <div class="p-1 "></div>
+            <h1><%=link_to user.user_name, user %></h1>
+            <p><strong>Email: </strong><%= user.email %></p>
+          </div>
         </div>
-        <div class="card-body">
-          <div class="p-1 "></div>
-          <h1><%=link_to user.user_name, user %></h1>
-          <p><strong>Email: </strong><%= user.email %></p>
-        </div>
-      </div>
-      <div class="m-1 bg-warning"></div>
-    <% end %>
-  </div>
+        <div class="m-1 bg-warning"></div>
+      <% end %>
+    </div>
+  <%else %>
+    <h2>No results were found</h2>
+  <% end %>
 </table>
