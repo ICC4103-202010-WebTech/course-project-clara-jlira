@@ -30,7 +30,9 @@
             <%if user_signed_in? %>
               <li class="nav-item"><%=link_to current_user.user_name, current_user, class: "nav-link"%></li>
               <li class="nav-item">
-                <a class="nav-link" href="<%= admin_events_admin_path %>" >Admin</a>
+                <%if current_user.admin == true %>
+                  <a class="nav-link" href="<%= admin_events_admin_path %>" >Admin</a>
+                <%end %>
               </li>
             <%end %>
             <%if user_signed_in? %>
