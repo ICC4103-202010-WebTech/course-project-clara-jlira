@@ -39,13 +39,10 @@
           <%= form.label :organization %>
           <%= form.collection_select(:organization_id, Organization.all.order(name: :asc), :id, :name, {}, { class: "form-control" }) %>
         </div>
-        <div class="form-group">
-          <%= form.label :user %>
-          <%= form.collection_select(:user_id, User.all.order(user_name: :asc), :id, :user_name, {}, { class: "form-control" }) %>
-        </div>
-        <div class="form-group mt-2">
-          <%= form.submit "submit", class: ["btn", "btn-primary"] %>
-          <%= link_to "Back", :back, class: ["btn", "btn-secondary"] %>
+        <div>
+          <%= form.hidden_field(:state, value:  "On Vote")%>
+          <%= form.hidden_field(:user_id, value:  current_user.id)%>
+          <%= form.hidden_field(:organization_id, value:  0)%>
         </div>
       </div>
       <div class="col ">
@@ -53,26 +50,39 @@
           <div class="card-body">
             <h5 class="card-title"><%= event_date_section_title %></h5>
             <p><%= event_date_instruction_text %></p>
-            <%=form.fields_for :event_dates do |event_dates_form| %>
-              <div class="form-group">
-                <%= event_dates_form.label "Event Date Option" %>
-                <%= event_dates_form.datetime_field :event_option, min: Date.today, class: "form-control"%>
-                <% if action_name == 'edit' %>
+            <% if action_name == 'edit' %>
+              <%=form.fields_for :event_dates do |event_dates_form| %>
+                <div class="form-group">
+                  <%= event_dates_form.label "Event Date Option" %>
+                  <%= event_dates_form.datetime_field :event_option, min: Date.today, class: "form-control"%>
                   <%= event_dates_form.label "Delete"%>
                   <%= event_dates_form.check_box :_destroy %>
-                <% end %>
-                <%= event_dates_form.submit "submit", class: ["btn", "btn-primary"] %>
-                <hr>
-              </div>
+                  <%= event_dates_form.submit "submit", class: ["btn", "btn-primary"] %>
+                  <%= event_dates_form.hidden_field(:final_date, value:  false)%>
+                  <hr>
+                </div>
+              <% end %>
+            <%else %>
+              <%=form.fields_for EventDate.new do |event_dates_form| %>
+                <div class="form-group">
+                  <%= event_dates_form.label "Event Date Option" %>
+                  <%= event_dates_form.datetime_field :event_option, min: Date.today, class: "form-control"%>
+                  <%= event_dates_form.label "Delete"%>
+                  <%= event_dates_form.check_box :_destroy %>
+                  <%= event_dates_form.submit "submit", class: ["btn", "btn-primary"] %>
+                  <%= event_dates_form.hidden_field(:final_date, value:  false)%>
+                  <hr>
+                </div>
+              <% end %>
             <% end %>
           </div>
         </div>
       </div>
-      <div class="form-group">
-        <%= hidden_field_tag(:final_date, false)%>
-        <%= hidden_field_tag(:state, "On Vote")%>
-        <%= hidden_field_tag(:user_id, current_user.id)%>
-        <%= hidden_field_tag(:organization_id, 0)%>
-      </div>
-    <% end %>
   </div>
+  <div class="row">
+    <div class="form-group mt-2">
+      <%= form.submit "submit", class: ["btn", "btn-primary"] %>
+      <%= link_to "Back", :back, class: ["btn", "btn-secondary"] %>
+    </div>
+  </div>
+<% end %>
