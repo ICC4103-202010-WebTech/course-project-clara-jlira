@@ -6,17 +6,23 @@
     <hr>
     <div class="row">
       <% @events.each do |event| %>
-        <%= render partial: 'events/event_tile', locals: { event: event } %>
+        <% if event.private_event != true %>
+          <%= render partial: 'events/event_tile', locals: { event: event } %>
+        <% end %>
       <% end %>
       <% @events_all.each do |event| %>
         <%@users_u.each do |user| %>
           <%if user.id == event.user_id %>
-            <%= render partial: 'events/event_tile', locals: { event: event } %>
+            <% if event.private_event != true %>
+              <%= render partial: 'events/event_tile', locals: { event: event } %>
+            <% end %>
           <% end %>
         <% end %>
         <%@organizations.each do |organization| %>
           <%if organization.id == event.organization_id%>
-            <%= render partial: 'events/event_tile', locals: { event: event } %>
+            <% if event.private_event != true %>
+              <%= render partial: 'events/event_tile', locals: { event: event } %>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>

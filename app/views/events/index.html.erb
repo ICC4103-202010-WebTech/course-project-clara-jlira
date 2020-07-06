@@ -17,7 +17,9 @@
   </div>
   <div class="row">
     <% @events.each do |event| %>
-      <%= render partial: 'event_tile', locals: { event: event } %>
+      <% if event.private_event != true %>
+        <%= render partial: 'event_tile', locals: { event: event } %>
+      <% end %>
     <% end %>
   </div>
 </div>

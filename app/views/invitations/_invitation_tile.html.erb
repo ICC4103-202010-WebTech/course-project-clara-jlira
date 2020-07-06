@@ -1,5 +1,9 @@
 <% @event_users.each do |user| %>
   <%if user.id == invitation.user_id %>
-    <%= link_to  user.user_name, url_for(user) %>
+    <% if user_signed_in?%>
+      <%= link_to  user.user_name, url_for(user) %>
+    <%else %>
+      <%= link_to  user.user_name, user_session_path %>
+    <%end %>
   <% end %>
 <% end %>

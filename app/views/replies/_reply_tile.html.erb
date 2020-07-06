@@ -1,6 +1,10 @@
 <% User.all.each do |user| %>
   <%if user.id == reply.user_id %>
-    <td><b><%= link_to  user.user_name, url_for(user) %></b></td>
+    <% if user_signed_in?%>
+      <td><b><%= link_to  user.user_name, url_for(user) %></b></td>
+    <%else %>
+      <td><b><%= link_to  user.user_name, user_session_path %></b></td>
+    <%end %>
     <td><%= reply.content %></td>
   <% end %>
 <% end %>

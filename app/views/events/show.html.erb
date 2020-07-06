@@ -74,7 +74,11 @@
                 <% if event_date.event_id == @event.id %>
                   <tr>
                     <td><%= event_date.event_option.to_s %></td>
-                    <td><%= link_to "Vote", new_user_vote_path(@event.id), class: ["btn", "btn-primary"] %></td>
+                    <%if user_signed_in? %>
+                      <td><%= link_to "Vote", new_user_vote_path(@event.id), class: ["btn", "btn-primary"] %></td>
+                    <%else %>
+                      <td><%= link_to "Vote", user_session_path, class: ["btn", "btn-primary"] %></td>
+                    <%end %>
                   </tr>
                 <% end %>
               <% end %>
@@ -103,10 +107,12 @@
         <% end %>
         <tr>
           <td>
-            <% if current_user.id == @event.user_id %>
-              <div class="btn-group">
-                <%= link_to "Make an Invitation", new_event_invitation_path(@event.id), class: ["btn", "btn-primary"] %>
-              </div>
+            <%if user_signed_in? %>
+              <% if current_user.id == @event.user_id %>
+                <div class="btn-group">
+                  <%= link_to "Make an Invitation", new_event_invitation_path(@event.id), class: ["btn", "btn-primary"] %>
+                </div>
+              <% end %>
             <% end %>
           </td>
         </tr>
@@ -133,9 +139,15 @@
         <tr>
           <td></td>
           <td>
-            <div class="btn-group">
-              <%= link_to "Make a comment", new_event_comment_path(@event.id), class: ["btn", "btn-primary"] %>
-            </div>
+            <%if user_signed_in? %>
+              <div class="btn-group">
+                <%= link_to "Make a comment", new_event_comment_path(@event.id), class: ["btn", "btn-primary"] %>
+              </div>
+            <% else %>
+              <div class="btn-group">
+                <%= link_to "Make a comment", user_session_path, class: ["btn", "btn-primary"] %>
+              </div>
+            <% end %>
           </td>
         </tr>
       </table>
