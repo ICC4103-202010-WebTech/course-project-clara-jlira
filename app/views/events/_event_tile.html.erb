@@ -14,11 +14,7 @@
           <% end %>
         <% end %>
       <% else %>
-        <% @event_users.each do |event_user| %>
-          <% if event.user_id == event_user.id %>
-            <p class="card-text"><b>Author:</b> <%= event_user.user_name %></p>
-          <% end %>
-        <% end %>
+        <p class="card-text"><b>Author:</b> <%= User.where(id: event.user_id).first.user_name %></p>
       <% end %>
       <p class="card-text"><%= event.description %></p>
       <p class="card-text"><b>Where:</b> <%= event.location %></p>

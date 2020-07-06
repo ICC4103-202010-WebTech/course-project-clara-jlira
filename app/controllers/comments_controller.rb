@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
   # GET /comments/1
   # GET /comments/1.json
   def show
+    @replies = Reply.where(comment_id: @comment.id)
   end
 
   # GET /comments/new
@@ -32,10 +33,10 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.html { redirect_to event_path(@comment.event_id), notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
-        format.html { render :new }
+        format.html { render :back }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end

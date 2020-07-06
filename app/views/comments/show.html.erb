@@ -1,17 +1,45 @@
-<p id="notice"><%= notice %></p>
-<h1>Comment</h1>
-<p>
-  <strong>user_id:</strong>
-  <%= @comment.user_id %>
-</p>
-<p>
-  <strong>event_id:</strong>
-  <%= @comment.event_id %>
-</p>
-<p>
-  <strong>content:</strong>
-  <%= @comment.content %>
-</p>
+<h1>Comment from <%= Event.where(id: @comment.event_id).first.title %></h1>
+<div class="container">
+  <div class="row">
+    <table class="table table-bordered ">
+      <tr>
+        <th>
+          <b>User Name</b>
+        </th>
+        <th>
+        <b>Comment: </b>
+        </th>
+      </tr>
+      <tr>
+        <td><%= User.where(id: @comment.user_id).first.user_name %></td>
+        <td><%= @comment.content %></td>
+      </tr>
+    </table>
+    <table class="table table-bordered ">
+      <tr>
+        <th>
+        </th>
+        <th>
+          <b>Replies</b>
+        </th>
+      </tr>
+      <% @replies.each do |reply| %>
+        <tr>
+          <%= render partial: 'replies/reply_tile', locals: { reply: reply } %>
+        </tr>
+      <% end %>
+      <tr>
+        <td></td>
+        <td>
+          <div class="btn-group">
+            <%= link_to "Reply", new_comment_reply_path(@comment.id), class: ["btn", "btn-primary"] %>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
 
 <%= link_to 'Back', :back %>
 <%= link_to 'Replies', comment_replies_path(@comment.id) %>

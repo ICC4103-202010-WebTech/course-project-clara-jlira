@@ -31,10 +31,10 @@ class RepliesController < ApplicationController
 
     respond_to do |format|
       if @reply.save
-        format.html { redirect_to @reply, notice: 'Reply was successfully created.' }
+        format.html { redirect_to comment_path(@reply.comment_id), notice: 'Reply was successfully created.' }
         format.json { render :show, status: :created, location: @reply }
       else
-        format.html { render :new }
+        format.html { render :back, alert: 'Event can\'t be updated.'  }
         format.json { render json: @reply.errors, status: :unprocessable_entity }
       end
     end
@@ -80,6 +80,6 @@ class RepliesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def reply_params
-      params.require(:reply).permit(:index, :show)
+      params.require(:reply).permit(:content, :comment_id,:user_id)
     end
 end

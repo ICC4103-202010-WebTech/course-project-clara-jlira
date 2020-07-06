@@ -1,0 +1,6 @@
+<% User.all.each do |user| %>
+  <%if user.id == reply.user_id %>
+    <td><b><%= link_to  user.user_name, url_for(user) %></b></td>
+    <td><%= reply.content %></td>
+  <% end %>
+<% end %>

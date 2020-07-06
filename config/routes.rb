@@ -74,5 +74,7 @@ Rails.application.routes.draw do
     resources :votes
   end
   resources :invitations
+  resources :replies
+
 
 end

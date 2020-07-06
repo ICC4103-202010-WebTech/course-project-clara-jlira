@@ -16,8 +16,8 @@
     <%= form.text_area :content, class: "form-control"  %>
   </div>
   <div class="form-group">
-    <%= hidden_field_tag(:user_id, 1)%>
-    <%= hidden_field_tag(:event_id, 1)%>
+    <%= form.hidden_field(:user_id, value: current_user.id)%>
+    <%= form.hidden_field(:event_id, value: params[:event_id])%>
   </div>
 
   <div class="form-group mt-2">

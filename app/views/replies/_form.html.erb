@@ -11,17 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :index %>
-    <%= form.text_field :index %>
+  <div class="form-group">
+    <b><%= form.label "Your reply" %></b>
+    <%= form.text_area :content, class: "form-control"  %>
+  </div>
+  <div class="form-group">
+    <%= form.hidden_field(:user_id, value: current_user.id)%>
+    <%= form.hidden_field(:comment_id, value: params[:comment_id])%>
   </div>
 
-  <div class="field">
-    <%= form.label :show %>
-    <%= form.text_field :show %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group mt-2">
+    <%= form.submit "Reply", class: ["btn", "btn-primary"] %>
+    <%= link_to "Back", :back, class: ["btn", "btn-secondary"] %>
   </div>
 <% end %>
