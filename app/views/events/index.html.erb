@@ -20,8 +20,10 @@
       <% if event.private_event != true %>
         <%= render partial: 'event_tile', locals: { event: event } %>
       <% end %>
-      <% if event.user_id == current_user.id %>
-        <%= render partial: 'events/event_tile', locals: { event: event } %>
+      <%if user_signed_in? %>
+        <% if event.user_id == current_user.id %>
+          <%= render partial: 'events/event_tile', locals: { event: event } %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
