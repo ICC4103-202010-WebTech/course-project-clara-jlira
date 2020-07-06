@@ -47,7 +47,7 @@ class InvitationsController < ApplicationController
   def update
     respond_to do |format|
       if @invitation.update(invitation_params)
-        format.html { redirect_to @invitation, notice: 'Invitation was successfully updated.' }
+        format.html { redirect_to event_path(@invitation.event_id), notice: 'Invitation was successfully updated.' }
         format.json { render :show, status: :ok, location: @invitation }
       else
         format.html { render :edit }

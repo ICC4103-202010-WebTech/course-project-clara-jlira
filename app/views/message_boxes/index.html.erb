@@ -1,29 +1,21 @@
-<p id="notice"><%= notice %></p>
+
 
 <h1>Message Boxes</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Index</th>
-      <th>Show</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% @message_boxes.each do |message| %>
+  <% if Invitation.where(id: message.invitation_id).first.user_id == current_user.id %>
+    <div class="container p-3 my-3 border">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <%= message.content %>
+          </div>
+          <div class="col">
+            <%= link_to "Invitation", edit_invitation_path(Invitation.where(id: message.invitation_id).first.id) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
 
-  <tbody>
-    <% @message_boxes.each do |message_box| %>
-      <tr>
-        <td><%= message_box.index %></td>
-        <td><%= message_box.show %></td>
-        <td><%= link_to 'Show', message_box %></td>
-        <td><%= link_to 'Edit', edit_message_box_path(message_box) %></td>
-        <td><%= link_to 'Destroy', message_box, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Message Box', new_message_box_path %>
