@@ -27,27 +27,38 @@
 </div>
 
 <%= link_to 'Back', users_path , class: ["btn", "btn-primary"] %>
-<%= link_to 'Edit', edit_user_path , class: ["btn", "btn-primary"] %>
-<%= link_to 'Change Password', edit_user_registration_path , class: ["btn", "btn-primary"]%>
-
+<% if user_signed_in? %>
+  <% if current_user.id == @user.id || current_user.admin%>
+    <%= link_to 'Edit', edit_user_path , class: ["btn", "btn-primary"] %>
+    <%= link_to 'Change Password', edit_user_registration_path , class: ["btn", "btn-primary"]%>
+  <%end %>
+<%end %>
 <hr>
-<h1>User Events</h1>
-<div class="row">
-  <% @events.each do |event| %>
-    <% if event.user_id == @user.id %>
-      <%= render partial: 'events/event_tile', locals: { event: event } %>
-    <% end %>
-  <% end %>
-</div>
+<% if user_signed_in? %>
+  <% if current_user.id == @user.id || current_user.admin%>
+    <h1>User Events</h1>
+    <div class="row">
+      <% @events.each do |event| %>
+        <% if event.user_id == @user.id %>
+          <%= render partial: 'events/event_tile', locals: { event: event } %>
+        <% end %>
+      <% end %>
+    </div>
 
-<hr>
-<h1>User Invited Events</h1>
-<div class="row">
-  <% @invitation_event.each do |event| %>
-    <% if event.user_id == @user.id %>
-      <%= render partial: 'events/event_tile', locals: { event: event } %>
-    <% end %>
+    <hr>
+    <h1>User Invited Events</h1>
+    <div class="row">
+      <%Invitation.where(user_id: @user.id).each do |invitation| %>
+        <% if invitation.user_id == @user.id %>
+          <% @events.each do |event| %>
+            <%if event.id == invitation.event_id%>
+              <%= render partial: 'events/event_tile', locals: { event: event } %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
   <% end %>
-</div>
+<% end %>
 
 
