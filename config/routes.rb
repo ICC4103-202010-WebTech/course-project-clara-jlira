@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   resources :users, shallow: true do
     resources :memberships
     resources :events
-    resources :messages
+    resources :message_boxes
     resources :notifications
     resources :invitations
     resources :replies

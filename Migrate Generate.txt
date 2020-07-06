@@ -9,7 +9,7 @@ rails g model EventFile file_dir:string file_type:string
 rails g model Comment content:string
 rails g model Reply content:string
 rails g model Notification notification:string notification_type:string
-rails g model Message message:string
+rails g model Message_box content:string
 rails g model Report reason:string
 rails g model EventDate event_option:datetime
 
@@ -24,7 +24,7 @@ rails g migration add_user_id_to_events user_id:integer
 rails g migration add_user_id_to_reports user_id:integer
 rails g migration add_user_id_to_comments user_id:integer
 rails g migration add_user_id_to_replies user_id:integer
-rails g migration add_user_id_to_messages user_id:integer
+rails g migration add_invitation_id_to_message_boxes invitation_id:integer
 rails g migration add_user_id_to_notifications user_id:integer
 rails g migration add_organization_id_to_memberships organization_id:integer
 rails g migration add_organization_id_to_organization_files organization_id:integer

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Index:</strong>
+  <%= @message_box.index %>
+</p>
+
+<p>
+  <strong>Show:</strong>
+  <%= @message_box.show %>
+</p>
+
+<%= link_to 'Edit', edit_message_box_path(@message_box) %> |
+<%= link_to 'Back', message_boxes_path %>

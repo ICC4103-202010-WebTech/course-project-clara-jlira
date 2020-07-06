@@ -103,9 +103,11 @@
         <% end %>
         <tr>
           <td>
-            <div class="btn-group">
-              <%= link_to "Make an Invitation", new_event_invitation_path(@event.id), class: ["btn", "btn-primary"] %>
-            </div>
+            <% if current_user.id == @event.user_id %>
+              <div class="btn-group">
+                <%= link_to "Make an Invitation", new_event_invitation_path(@event.id), class: ["btn", "btn-primary"] %>
+              </div>
+            <% end %>
           </td>
         </tr>
       </table>

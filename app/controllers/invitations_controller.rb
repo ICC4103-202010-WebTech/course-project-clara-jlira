@@ -32,6 +32,7 @@ class InvitationsController < ApplicationController
     @invitation = Invitation.new(invitation_params)
     respond_to do |format|
       if @invitation.save
+        MessageBox.create(content:"You have a new invitation from "+Event.where(id: @invitation.event_id).first.title,invitation_id: @invitation.id)
         format.html { redirect_to event_path(@invitation.event_id), notice: 'Invitation was successfully created.' }
         format.json { render :show, status: :created, location: @invitation }
       else
@@ -81,6 +82,6 @@ class InvitationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def invitation_params
-      params.require(:invitation).permit(:user_id, :event_id, :acceptance, messages_attributes:[:text, :invitation_id])
+      params.require(:invitation).permit(:user_id, :event_id, :acceptance)
     end
 end

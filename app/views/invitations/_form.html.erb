@@ -21,14 +21,6 @@
     <%= form.hidden_field(:event_id, value: params[:event_id]) %>
     <%= form.hidden_field(:acceptance, value: false)%>
   </div>
-  <div class="form-group">
-    <%=form.fields_for Message.new do |message_form| %>
-      <%= message_form.label "Leave a Message" %>
-      <%= message_form.text_area :text, class: "form-control"%>
-      <%= message_form.hidden_field(:invitation_id, value: @invitation.id) %>
-    <% end %>
-  </div>
-
 
   <div class="form-group mt-2">
     <%= form.submit "submit", class: ["btn", "btn-primary"] %>
